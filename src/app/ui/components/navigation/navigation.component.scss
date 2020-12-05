@@ -1,0 +1,158 @@
+@import "../../../../styles.scss";
+
+.logo {
+  display: flex;
+  text-align: center;
+  align-items: center;
+  color: $mindaro;
+  font-family: "Lobster", cursive;
+  margin-left: 5rem;
+  font-size: 2rem;
+}
+
+nav {
+  position: relative;
+}
+
+.navbar {
+  background-color: $oxford-blue;
+  display: flex;
+}
+
+ul {
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+}
+
+.hamburger {
+  display: flex;
+  margin-left: auto;
+  flex-direction: column;
+  color: white;
+  width: 60px;
+  height: 100%;
+  padding: 1.5rem;
+  .line {
+    margin: 4px;
+    height: 3px;
+    background-color: $mindaro;
+  }
+}
+
+.opened {
+  background-color: $mindaro;
+  .line {
+    margin: 4px;
+    height: 3px;
+    background-color: $oxford-blue;
+  }
+}
+
+.hamburger:hover {
+  background-color: $mindaro;
+  cursor: pointer;
+  .line {
+    margin: 4px;
+    height: 3px;
+    background-color: $oxford-blue;
+  }
+}
+
+@media screen and (max-width: $screen-lg-min) {
+  .hidden {
+    display: none !important;
+  }
+
+  .items {
+    background-color: $mindaro;
+    display: flex;
+    z-index: 2;
+    flex-direction: column;
+    position: absolute;
+    margin-top: 5rem;
+    width: 100%;
+
+    .item {
+      height: 3rem;
+      a {
+        color: $oxford-blue;
+        font-family: "Open Sans", sans-serif;
+        font-weight: 600;
+        display: flex;
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        text-decoration: none;
+      }
+
+      :hover {
+        color: $mindaro;
+        background-color: $oxford-blue;
+        font-family: "Open Sans", sans-serif;
+        font-weight: 400;
+        height: 100%;
+        text-decoration: none;
+      }
+
+      .active-link {
+        color: $mindaro;
+        background-color: $oxford-blue;
+        font-family: "Open Sans", sans-serif;
+        font-weight: 400;
+        height: 100%;
+        text-decoration: none;
+      }
+    }
+  }
+}
+
+@include lg {
+  .hamburger {
+    display: none;
+  }
+
+  .items {
+    display: flex;
+    width: 30rem;
+    margin-left: auto;
+    margin-right: 30vh;
+    align-items: center;
+
+    .item {
+      width: 15rem;
+      height: 5rem;
+
+      a {
+        color: white;
+        font-family: "Open Sans", sans-serif;
+        font-weight: 600;
+        display: flex;
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        text-decoration: none;
+      }
+
+      :hover {
+        color: $oxford-blue;
+        background-color: $mindaro;
+        font-family: "Open Sans", sans-serif;
+        font-weight: 400;
+        height: 100%;
+        text-decoration: none;
+      }
+
+      .active-link {
+        color: $oxford-blue;
+        background-color: $mindaro;
+        font-family: "Open Sans", sans-serif;
+        font-weight: 400;
+        height: 100%;
+        text-decoration: none;
+      }
+    }
+  }
+}

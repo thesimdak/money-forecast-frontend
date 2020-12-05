@@ -1,0 +1,17 @@
+@import "../styles.scss";
+
+@media screen and (max-width: $screen-lg-min) {
+    .content {
+        margin-left: 10vw;
+        margin-right: 10wv;
+    }
+}
+
+@include lg {
+    .content {
+        margin-left: 20vw;
+        margin-right: 20wv;
+    }
+}
+
+
