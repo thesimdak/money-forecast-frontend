@@ -1,0 +1,47 @@
+@import "../../../../styles.scss";
+
+h3 {
+    margin-bottom: 0px;
+  }
+  
+  h3,.description {
+    color: $oxford-blue;
+    font-family: "Open Sans", sans-serif;
+  }
+
+
+  .main {
+      display: flex;
+      align-items: center;
+  }
+  .panel {
+      width: 100%;
+      cursor: pointer;
+      background-color: $mindaro;
+      margin-top: 1rem;
+      margin-bottom: 0rem;
+      border-radius: 7px;
+      box-shadow: 10px 10px 22px -12px rgba(0,0,0,0.48);
+      padding-top: 0.5rem;
+      padding-bottom: 0.5rem;
+    
+    
+      .main {
+          display: flex;
+          justify-content: space-between;
+          margin:1rem 2rem 1rem 2rem;
+
+            .item {
+                margin-left: 2rem;
+                margin-right: 1rem;
+            }
+          
+      }
+      .description {
+          font-size: 0.8rem;
+      }
+  }
+
+  .panel:focus {
+    outline: 0;
+  }

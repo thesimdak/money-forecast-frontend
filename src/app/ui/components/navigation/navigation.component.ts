@@ -18,6 +18,10 @@ export class NavigationComponent implements OnInit {
     this.hamburgerOpened = !this.hamburgerOpened;
   }
 
+  public closeMenu() {
+    this.hamburgerOpened = false;
+  }
+
   public getMenuClasses(): String[] {
     if (!this.hamburgerOpened) {
       return ['hidden'];

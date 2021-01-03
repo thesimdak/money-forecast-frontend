@@ -1,0 +1,22 @@
+<div class="new-forecast-header">
+  <h1>Account detail</h1>
+  <button class="btn-primary" routerLink="..">Save</button>
+</div>
+<div class="budget mt-1">
+  <div class="budget-form">
+    <span class="p-float-label">
+      <input id="float-input" type="text" pInputText />
+      <label for="float-input">Account name</label>
+    </span>
+    <div class="account-balance">
+      <span class="p-float-label">
+        <input id="float-input" type="text" pInputText />
+        <label for="float-input">Account balance</label>
+      </span>
+      <span class="p-float-label">
+        <p-dropdown [options]="currencies" [(ngModel)]="selectedCurrency" optionLabel="name" optionValue="code"></p-dropdown>
+      </span>
+    </div>
+  </div>
+</div>
+<button class="btn-secondary mt-1" routerLink="..">Cancel</button>

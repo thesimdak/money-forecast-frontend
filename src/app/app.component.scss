@@ -3,14 +3,14 @@
 @media screen and (max-width: $screen-lg-min) {
     .content {
         margin-left: 10vw;
-        margin-right: 10wv;
+        margin-right: 10vw;
     }
 }
 
 @include lg {
     .content {
         margin-left: 20vw;
-        margin-right: 20wv;
+        margin-right: 20vw;
     }
 }
 

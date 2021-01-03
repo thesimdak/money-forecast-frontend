@@ -1,0 +1,19 @@
+@import "../../../../styles.scss";
+h1 {
+  margin-bottom: 0px;
+}
+
+h1,
+h2 {
+  color: $oxford-blue;
+  font-family: "Open Sans", sans-serif;
+}
+
+.forecast-header {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  border-bottom: 3px solid;
+  border-color: $oxford-blue;
+
+}

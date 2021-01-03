@@ -15,8 +15,16 @@ const routes: Routes = [
     loadChildren: () => import('./ui/pages/forecast/forecast.module').then(m => m.ForecastModule)
   },
   {
-    path: 'landing',
+    path: '',
     loadChildren: () => import('./ui/pages/landing/landing.module').then(m => m.LandingModule)
+  },  
+  {
+    path: 'forecast/new-forecast',
+    loadChildren: () => import('./ui/pages/new-forecast/new-forecast.module').then(m => m.NewForecastModule)
+  },
+  {
+    path: 'forecast/new-forecast/account-detail',
+    loadChildren: () => import('./ui/pages/account-detail/account-detail.module').then(m => m.AccountDetailModule)
   }
 ];
 

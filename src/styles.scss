@@ -1,7 +1,12 @@
-@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Lobster&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans&display=swap");
+@import "~primeng/resources/themes/nova/theme.css";
+@import "~primeng/resources/primeng.min.css";
 
-body { margin: 0; padding: 0; }
+body {
+  margin: 0;
+  padding: 0;
+}
 
 /* SCSS HEX */
 $khaki-web: #b2aa8eff;
@@ -25,16 +30,77 @@ $light-sea-green: rgba(3, 181, 170, 1);
 $mindaro: rgba(219, 254, 135, 1);
 
 /* SCSS Gradient */
-$gradient-right: linear-gradient(90deg, #b2aa8eff, #0c1b33ff, #7a306cff, #03b5aaff, #dbfe87ff);
-$gradient-top: linear-gradient(0deg, #b2aa8eff, #0c1b33ff, #7a306cff, #03b5aaff, #dbfe87ff);
-$gradient-bottom: linear-gradient(180deg, #b2aa8eff, #0c1b33ff, #7a306cff, #03b5aaff, #dbfe87ff);
-$gradient-left: linear-gradient(270deg, #b2aa8eff, #0c1b33ff, #7a306cff, #03b5aaff, #dbfe87ff);
-$gradient-top-right: linear-gradient(45deg, #b2aa8eff, #0c1b33ff, #7a306cff, #03b5aaff, #dbfe87ff);
-$gradient-bottom-right: linear-gradient(135deg, #b2aa8eff, #0c1b33ff, #7a306cff, #03b5aaff, #dbfe87ff);
-$gradient-top-left: linear-gradient(225deg, #b2aa8eff, #0c1b33ff, #7a306cff, #03b5aaff, #dbfe87ff);
-$gradient-bottom-left: linear-gradient(315deg, #b2aa8eff, #0c1b33ff, #7a306cff, #03b5aaff, #dbfe87ff);
-$gradient-radial: radial-gradient(#b2aa8eff, #0c1b33ff, #7a306cff, #03b5aaff, #dbfe87ff);
-
+$gradient-right: linear-gradient(
+  90deg,
+  #b2aa8eff,
+  #0c1b33ff,
+  #7a306cff,
+  #03b5aaff,
+  #dbfe87ff
+);
+$gradient-top: linear-gradient(
+  0deg,
+  #b2aa8eff,
+  #0c1b33ff,
+  #7a306cff,
+  #03b5aaff,
+  #dbfe87ff
+);
+$gradient-bottom: linear-gradient(
+  180deg,
+  #b2aa8eff,
+  #0c1b33ff,
+  #7a306cff,
+  #03b5aaff,
+  #dbfe87ff
+);
+$gradient-left: linear-gradient(
+  270deg,
+  #b2aa8eff,
+  #0c1b33ff,
+  #7a306cff,
+  #03b5aaff,
+  #dbfe87ff
+);
+$gradient-top-right: linear-gradient(
+  45deg,
+  #b2aa8eff,
+  #0c1b33ff,
+  #7a306cff,
+  #03b5aaff,
+  #dbfe87ff
+);
+$gradient-bottom-right: linear-gradient(
+  135deg,
+  #b2aa8eff,
+  #0c1b33ff,
+  #7a306cff,
+  #03b5aaff,
+  #dbfe87ff
+);
+$gradient-top-left: linear-gradient(
+  225deg,
+  #b2aa8eff,
+  #0c1b33ff,
+  #7a306cff,
+  #03b5aaff,
+  #dbfe87ff
+);
+$gradient-bottom-left: linear-gradient(
+  315deg,
+  #b2aa8eff,
+  #0c1b33ff,
+  #7a306cff,
+  #03b5aaff,
+  #dbfe87ff
+);
+$gradient-radial: radial-gradient(
+  #b2aa8eff,
+  #0c1b33ff,
+  #7a306cff,
+  #03b5aaff,
+  #dbfe87ff
+);
 
 // Small tablets and large smartphones (landscape view)
 $screen-sm-min: 576px;
@@ -50,28 +116,109 @@ $screen-xl-min: 1200px;
 
 // Small devices
 @mixin sm {
-    @media (min-width: #{$screen-sm-min}) {
-        @content;
-    }
- }
- 
- // Medium devices
- @mixin md {
-    @media (min-width: #{$screen-md-min}) {
-        @content;
-    }
- }
- 
- // Large devices
- @mixin lg {
-    @media (min-width: #{$screen-lg-min}) {
-        @content;
-    }
- }
- 
- // Extra large devices
- @mixin xl {
-    @media (min-width: #{$screen-xl-min}) {
-        @content;
-    }
- }
+  @media (min-width: #{$screen-sm-min}) {
+    @content;
+  }
+}
+
+// Medium devices
+@mixin md {
+  @media (min-width: #{$screen-md-min}) {
+    @content;
+  }
+}
+
+// Large devices
+@mixin lg {
+  @media (min-width: #{$screen-lg-min}) {
+    @content;
+  }
+}
+
+// Extra large devices
+@mixin xl {
+  @media (min-width: #{$screen-xl-min}) {
+    @content;
+  }
+}
+
+.btn-primary {
+  font-family: "Open Sans", sans-serif;
+  margin-left: 10px;
+  cursor: pointer;
+  font-weight: 600;
+  color: white;
+  background-color: $byzantium;
+  width: 7rem;
+  height: 2.2rem;
+  border-radius: 7px;
+}
+
+.btn-primary:hover {
+  font-family: "Open Sans", sans-serif;
+  margin-left: 10px;
+  cursor: pointer;
+  font-weight: 600;
+  color: white;
+  opacity: 0.5;
+  background-color: $byzantium;
+  width: 7rem;
+  height: 2.2rem;
+  border-radius: 7px;
+}
+
+.btn-primary:focus {
+  outline: 0;
+}
+
+.btn-secondary {
+  font-family: "Open Sans", sans-serif;
+  margin-left: 10px;
+  cursor: pointer;
+  font-weight: 600;
+  color: white;
+  background-color: grey;
+  width: 7rem;
+  height: 2.2rem;
+  border-radius: 7px;
+}
+
+.btn-secondary:hover {
+  font-family: "Open Sans", sans-serif;
+  margin-left: 10px;
+  cursor: pointer;
+  font-weight: 600;
+  color: white;
+  opacity: 0.5;
+  background-color: grey;
+  width: 7rem;
+  height: 2.2rem;
+  border-radius: 7px;
+}
+
+.btn-secondary:focus {
+  outline: 0;
+}
+
+.mt-2 {
+  margin-top: 2rem;
+}
+
+.mt-1 {
+  margin-top: 2rem;
+}
+
+.mt-2 {
+    margin-bottom: 2rem;
+  }
+
+h1,
+h2,
+h3 {
+  margin-top: 0px;
+}
+
+label {
+  font-family: "Open Sans", sans-serif;
+  opacity: 0.8;
+}
