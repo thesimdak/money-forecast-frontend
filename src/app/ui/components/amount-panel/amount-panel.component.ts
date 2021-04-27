@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
@@ -8,16 +9,21 @@ import { Component, Input, OnInit } from '@angular/core';
 export class AmountPanelComponent implements OnInit {
 
   @Input()
-  public title = 'Konto BTV';
+  public title;
 
   @Input()
-  public amount = 18233;
+  public amount;
 
   
   @Input()
-  public description = 'Once a year on December.';
+  public description = 'Einmal pro monat';  
+  @Input()
+  public routerLink = '  ./account-detail';
 
-  constructor() { }
+
+  constructor(http: HttpClient) { 
+
+  }
 
   ngOnInit(): void {
   }

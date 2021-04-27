@@ -1,16 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { NewForecastComponent } from './new-forecast.component';
-import { NewForecastRoutingModule } from './new-forecast-routing.module';
+import { AccountsComponent } from './accounts.component';
+import { AccountsRoutingModule } from './accounts-routing.module';
 import { AmountPanelModule } from '../../components/amount-panel/amount-panel.module';
 
 
 @NgModule({
-  declarations: [NewForecastComponent],
+  declarations: [AccountsComponent],
   imports: [
     CommonModule,
-    NewForecastRoutingModule,
+    AccountsRoutingModule,
     AmountPanelModule
   ]
 })
-export class NewForecastModule { }
+export class AccountsModule { }

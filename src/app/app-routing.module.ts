@@ -19,12 +19,16 @@ const routes: Routes = [
     loadChildren: () => import('./ui/pages/landing/landing.module').then(m => m.LandingModule)
   },  
   {
-    path: 'forecast/new-forecast',
-    loadChildren: () => import('./ui/pages/new-forecast/new-forecast.module').then(m => m.NewForecastModule)
+    path: 'accounts',
+    loadChildren: () => import('./ui/pages/accounts/accounts.module').then(m => m.AccountsModule)
   },
   {
-    path: 'forecast/new-forecast/account-detail',
+    path: 'accounts/account-detail',
     loadChildren: () => import('./ui/pages/account-detail/account-detail.module').then(m => m.AccountDetailModule)
+  },
+  {
+    path: 'incomes/regular-income-detail',
+    loadChildren: () => import('./ui/pages/regular-income-detail/regular-income-detail.module').then(m => m.RegularIncomeDetailModule)
   }
 ];
 

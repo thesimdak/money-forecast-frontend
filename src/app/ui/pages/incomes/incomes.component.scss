@@ -6,8 +6,8 @@ h1 {
     border-color: $oxford-blue;
 }
 
-h1,
-h2 {
-  color: $oxford-blue;
-  font-family: "Open Sans", sans-serif;
+.income-subheader {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
 }

@@ -149,12 +149,13 @@ $screen-xl-min: 1200px;
   font-weight: 600;
   color: white;
   background-color: $byzantium;
-  width: 7rem;
+  border: none;
+  width: 5rem;
   height: 2.2rem;
-  border-radius: 7px;
+  border-radius: 10px;
 }
 
-.btn-primary:hover {
+.btn-primary:hover, .btn-primary:focus {
   font-family: "Open Sans", sans-serif;
   margin-left: 10px;
   cursor: pointer;
@@ -162,9 +163,10 @@ $screen-xl-min: 1200px;
   color: white;
   opacity: 0.5;
   background-color: $byzantium;
-  width: 7rem;
+  border: none;
+  width: 5rem;
   height: 2.2rem;
-  border-radius: 7px;
+  border-radius: 10px;
 }
 
 .btn-primary:focus {
@@ -178,12 +180,13 @@ $screen-xl-min: 1200px;
   font-weight: 600;
   color: white;
   background-color: grey;
-  width: 7rem;
+  border: none;
+  width: 5rem;
   height: 2.2rem;
-  border-radius: 7px;
+  border-radius: 10px;
 }
 
-.btn-secondary:hover {
+.btn-secondary:hover, .btn-secondary:focus {
   font-family: "Open Sans", sans-serif;
   margin-left: 10px;
   cursor: pointer;
@@ -191,9 +194,10 @@ $screen-xl-min: 1200px;
   color: white;
   opacity: 0.5;
   background-color: grey;
-  width: 7rem;
+  border: none;
+  width: 5rem;
   height: 2.2rem;
-  border-radius: 7px;
+  border-radius: 10px;
 }
 
 .btn-secondary:focus {
@@ -214,8 +218,11 @@ $screen-xl-min: 1200px;
 
 h1,
 h2,
-h3 {
+h3,
+p {
+  font-family: "Open Sans", sans-serif;
   margin-top: 0px;
+  margin-bottom: 0px;
 }
 
 label {

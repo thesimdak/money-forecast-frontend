@@ -1,12 +1,12 @@
 <div class="content-header">
-  <h1>Account detail</h1>
+  <h1>Regular income detail</h1>
 </div>
 <div class="budget mt-1">
   <form [formGroup]="accountForm" *ngIf="accountForm">
     <div class="budget-form">
       <span class="p-float-label">
         <input id="float-input" type="text" formControlName="name" pInputText />
-        <label for="float-input">Account name</label>
+        <label for="float-input">Income name</label>
       </span>
       <div class="account-balance">
         <span class="p-float-label">
@@ -16,7 +16,7 @@
             formControlName="balance"
             pInputText
           />
-          <label for="float-input">Account balance</label>
+          <label for="float-input">Income amount</label>
         </span>
         <span class="p-float-label">
           <p-dropdown

@@ -1,21 +1,21 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AccountDetailComponent } from './account-detail.component';
-import { AccountDetailRoutingModule } from './account-detail-routing.module';
+import { RegularIncomeDetailComponent } from './regular-income-detail.component';
+import { RegularIncomeDetailRoutingModule } from './regular-income-detail-routing.module';
 import { InputTextModule } from 'primeng/inputtext';
 import { DropdownModule } from 'primeng/dropdown';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
-  declarations: [AccountDetailComponent],
+  declarations: [RegularIncomeDetailComponent],
   imports: [
     CommonModule,
-    AccountDetailRoutingModule,
+    RegularIncomeDetailRoutingModule,
     InputTextModule,
     DropdownModule,
     FormsModule,
     ReactiveFormsModule
   ]
 })
-export class AccountDetailModule { }
+export class RegularIncomeDetailModule { }

@@ -9,11 +9,11 @@ interface Currency {
 }
 
 @Component({
-  selector: 'app-account-detail-forecast',
-  templateUrl: './account-detail.component.html',
-  styleUrls: ['./account-detail.component.scss'],
+  selector: 'app-regular-income-detail-forecast',
+  templateUrl: './regular-income-detail.component.html',
+  styleUrls: ['./regular-income-detail.component.scss'],
 })
-export class AccountDetailComponent implements OnInit {
+export class RegularIncomeDetailComponent implements OnInit {
   public currencies: Currency[];
 
   public selectedCurrency: Currency;

@@ -1,0 +1,27 @@
+@import "../../../../styles.scss";
+@import "~primeicons/primeicons.css";
+
+.budget-input input {
+  color: $oxford-blue;
+  font-size: 1.5rem;
+  font-family: "Open Sans", sans-serif;
+}
+
+.content-header {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  border-bottom: 3px solid;
+  border-color: $oxford-blue;
+}
+
+.content-footer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.accounts-header {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}
