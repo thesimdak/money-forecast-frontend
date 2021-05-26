@@ -1,21 +1,22 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RegularIncomeDetailComponent } from './regular-income-detail.component';
-import { RegularIncomeDetailRoutingModule } from './regular-income-detail-routing.module';
+import { IncomeDetailComponent } from './income-detail.component';
+import { IncomeDetailRoutingModule } from './income-detail-routing.module';
 import { InputTextModule } from 'primeng/inputtext';
 import { DropdownModule } from 'primeng/dropdown';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
+import { MultiSelectModule } from 'primeng/multiselect';
 
 @NgModule({
-  declarations: [RegularIncomeDetailComponent],
+  declarations: [IncomeDetailComponent],
   imports: [
     CommonModule,
-    RegularIncomeDetailRoutingModule,
+    IncomeDetailRoutingModule,
     InputTextModule,
     DropdownModule,
     FormsModule,
-    ReactiveFormsModule
-  ]
+    ReactiveFormsModule,
+    MultiSelectModule,
+  ],
 })
-export class RegularIncomeDetailModule { }
+export class IncomeDetailModule {}

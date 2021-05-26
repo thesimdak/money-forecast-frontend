@@ -17,8 +17,6 @@ export class AmountPanelComponent implements OnInit {
   
   @Input()
   public description = 'Einmal pro monat';  
-  @Input()
-  public routerLink = '  ./account-detail';
 
 
   constructor(http: HttpClient) { 

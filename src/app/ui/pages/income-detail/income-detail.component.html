@@ -1,14 +1,14 @@
 <div class="content-header">
-  <h1>Regular income detail</h1>
+  <h1>Income</h1>
 </div>
 <div class="budget mt-1">
-  <form [formGroup]="accountForm" *ngIf="accountForm">
+  <form [formGroup]="incomeForm" *ngIf="incomeForm">
     <div class="budget-form">
       <span class="p-float-label">
         <input id="float-input" type="text" formControlName="name" pInputText />
         <label for="float-input">Income name</label>
       </span>
-      <div class="account-balance">
+      <div class="balance">
         <span class="p-float-label">
           <input
             id="float-input"
@@ -28,11 +28,15 @@
         </span>
       </div>
     </div>
+    <form formGroupName="regularity">
+      <p-multiSelect [options]="daysOptions" formControlName="days" optionLabel="Days"></p-multiSelect>
+      <p-multiSelect [options]="monthsOptions" formControlName="months" optionLabel="Months"></p-multiSelect>
+    </form>
   </form>
 </div>
 <div class="btn-footer">
   <button class="btn-secondary mt-1" routerLink="..">Cancel</button>
-  <button class="btn-primary mt-1" (click)="saveAccount()" routerLink="..">
+  <button class="btn-primary mt-1" (click)="saveIncome()" routerLink="..">
     Save
   </button>
 </div>

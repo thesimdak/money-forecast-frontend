@@ -27,8 +27,8 @@ const routes: Routes = [
     loadChildren: () => import('./ui/pages/account-detail/account-detail.module').then(m => m.AccountDetailModule)
   },
   {
-    path: 'incomes/regular-income-detail',
-    loadChildren: () => import('./ui/pages/regular-income-detail/regular-income-detail.module').then(m => m.RegularIncomeDetailModule)
+    path: 'incomes/income-detail',
+    loadChildren: () => import('./ui/pages/income-detail/income-detail.module').then(m => m.IncomeDetailModule)
   }
 ];
 

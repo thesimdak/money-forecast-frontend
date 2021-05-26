@@ -5,7 +5,7 @@
   <button class="btn-primary" routerLink="./account-detail">Add</button>
 </div>
 <div class="budget" *ngFor="let account of accounts">
-  <app-amount-panel [title]="account.name" [amount]="account.balance"></app-amount-panel>
+  <app-amount-panel [title]="account.name" [amount]="account.balance" [routerLink]="'./account-detail'"></app-amount-panel>
 </div>
 <div class="content-footer">
   <button class="btn-secondary mt-1" routerLink="..">Back</button>
