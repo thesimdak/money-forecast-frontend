@@ -1,6 +1,8 @@
 export interface Regularity {
-    days: number[],
-    months: number[],
+    timePoints: {
+      month: number,
+      days: number[]
+    }[],
     repeatable: boolean
   }
   

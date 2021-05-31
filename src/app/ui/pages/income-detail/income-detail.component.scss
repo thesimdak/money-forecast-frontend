@@ -23,12 +23,30 @@
   
 }
 
+.p-dropdown.p-component {
+  width: 100% !important;;
+}
+
+.btn-add-periodity {
+  margin-left: 0.5rem;
+    margin-right: 0.5rem;
+    margin-top: 1.5rem;
+    width: 100% !important;
+}
+
 .balance {
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
   @media screen and (max-width: $screen-lg-min) {
     margin-top: 0.5rem;
   }
+}
+
+.time-period {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
 }
 
 .content-header {
@@ -46,6 +64,11 @@
     width: 100%; 
   }
 
+  .time-period-line {
+    display: flex;
+    justify-content: space-between;
+    width: 100%; 
+  }
 
 
   .budget-cancel-btn {

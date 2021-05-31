@@ -10,28 +10,45 @@
       </span>
       <div class="balance">
         <span class="p-float-label">
-          <input
-            id="float-input"
-            type="text"
-            formControlName="balance"
-            pInputText
-          />
+          <input id="float-input" type="text" formControlName="balance" pInputText />
           <label for="float-input">Income amount</label>
         </span>
         <span class="p-float-label">
-          <p-dropdown
-            [options]="currencies"
-            formControlName="currency"
-            optionLabel="name"
-            optionValue="code"
-          ></p-dropdown>
+          <p-dropdown [options]="currencies" formControlName="currency" optionLabel="name" optionValue="code">
+          </p-dropdown>
         </span>
       </div>
     </div>
-    <form formGroupName="regularity">
-      <p-multiSelect [options]="daysOptions" formControlName="days" optionLabel="Days"></p-multiSelect>
-      <p-multiSelect [options]="monthsOptions" formControlName="months" optionLabel="Months"></p-multiSelect>
-    </form>
+    <div class="budget-form">
+      <button class="btn-primary w-full btn-add-periodity" routerLink="..">Add periodity</button>
+    </div>
+    <div class="budget-form">
+      <form formGroupName="regularity" class="w-full">
+
+        <ng-container formArrayName="timePoints">
+          <div *ngFor="let timePoint of incomeForm.controls.regularity.controls.timePoints.controls; let i=index">
+            <div [formGroupName]="i" class="time-period">
+              <div class="time-period-line">
+                <span class="p-float-label w-full">
+                  <p-dropdown [autoWidth]="false" [options]="monthsOptions" (onChange)='onChangeMonth($event)'
+                    formControlName="month" optionLabel="name" optionValue="code">
+                  </p-dropdown>
+                </span>
+                <span class="p-float-label">
+                  <p-multiSelect [defaultLabel]="'Days'" [options]="daysOptions" formControlName="days" optionLabel="name" optionValue="code">
+                  </p-multiSelect>
+                </span>
+                <span class="p-float-label">
+                  <button *ngIf="i!=0" class="btn-secondary" routerLink="..">Remove</button>
+                  <button *ngIf="i==0" class="btn-secondary-disabled" routerLink="..">Remove</button>
+                </span>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+
+      </form>
+    </div>
   </form>
 </div>
 <div class="btn-footer">
