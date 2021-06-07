@@ -144,7 +144,6 @@ $screen-xl-min: 1200px;
 
 .btn-primary {
   font-family: "Open Sans", sans-serif;
-  margin-left: 10px;
   cursor: pointer;
   font-weight: 600;
   color: white;
@@ -157,7 +156,6 @@ $screen-xl-min: 1200px;
 
 .btn-primary:hover, .btn-primary:focus {
   font-family: "Open Sans", sans-serif;
-  margin-left: 10px;
   cursor: pointer;
   font-weight: 600;
   color: white;
@@ -175,7 +173,6 @@ $screen-xl-min: 1200px;
 
 .btn-secondary-disabled {
   font-family: "Open Sans", sans-serif;
-  margin-left: 10px;
   cursor: pointer;
   font-weight: 600;
   color: white;
@@ -189,7 +186,6 @@ $screen-xl-min: 1200px;
 
 .btn-secondary {
   font-family: "Open Sans", sans-serif;
-  margin-left: 10px;
   cursor: pointer;
   font-weight: 600;
   color: white;
@@ -202,7 +198,6 @@ $screen-xl-min: 1200px;
 
 .btn-secondary:hover, .btn-secondary:focus {
   font-family: "Open Sans", sans-serif;
-  margin-left: 10px;
   cursor: pointer;
   font-weight: 600;
   color: white;
@@ -247,3 +242,11 @@ label {
 .w-full {
   width: 100%;
 }
+
+.content-header {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  border-bottom: 3px solid;
+  border-color: $oxford-blue;
+ }

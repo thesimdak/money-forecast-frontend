@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, FormArray } from '@angular/forms';
 import { Currency } from 'src/app/models/currency.interface';
 import { Income } from 'src/app/models/income.interface';
 import { AccountService } from 'src/app/store/data-service/account.service';
@@ -25,21 +25,42 @@ export class IncomeDetailComponent implements OnInit {
   public selectedCurrency: Currency;
   @Input()
   public income: Income = {
-    name: 'My account',
-    balance: 122,
+    name: null,
+    balance: null,
+    currency: 'EUR',
+    regularity: {
+      timePoints: [{
+        year: null,
+        month: null,
+        days: []
+      }]
+    }
+  };
+
+  public income2: Income = {
+    name: 'My account!',
+    balance: 1223,
     currency: '',
     regularity: {
       timePoints: [{
-        month: 1,
-        days: [2, 3]
-      }],
-      repeatable: false
+        year: 2021,
+        month: 7,
+        days: [2, 31]
+      },
+      {
+        year: 2021,
+        month: 9,
+        days: [31]
+      }]
     }
 
-
   };
+
+  public timePointFormArray: FormArray = this.fb.array([
+  ]);
   public incomeForm: FormGroup;
 
+  yearsOptions: Day[];
   daysOptions: Day[];
   daysOptions28: Day[];
   daysOptions30: Day[];
@@ -49,6 +70,15 @@ export class IncomeDetailComponent implements OnInit {
 
 
   constructor(private accountService: AccountService, private fb: FormBuilder) {
+    this.yearsOptions = [
+      { name: 'Yearly', code: 0 },
+      { name: '2021', code: 2021 },
+      { name: '2022', code: 2022 },
+      { name: '2023', code: 2023 },
+      { name: '2024', code: 2024 },
+      { name: '2025', code: 2025 },
+    ];
+
     this.daysOptions28 = [
       { name: '1.', code: 1 },
       { name: '2.', code: 2 },
@@ -94,12 +124,25 @@ export class IncomeDetailComponent implements OnInit {
       { name: 'Merch', code: 3 },
       { name: 'April', code: 4 },
       { name: 'May', code: 5 },
+      { name: 'September', code: 9 },
+      { name: 'October', code: 10 },
     ];
   }
 
   ngOnInit(): void {
     this.currencies = [{ name: 'EUR', code: 'EUR' }];
     this.selectedCurrency = this.currencies[0];
+
+    for (const timePoint of this.income2.regularity.timePoints) {
+      const timePointGroup = this.fb.group({
+        year: this.fb.control(''),
+        month: this.fb.control(''),
+        days: this.fb.control(''),
+      })
+      timePointGroup.setValue(timePoint);
+      this.timePointFormArray.push(timePointGroup);
+    }
+
     this.incomeForm = this.fb.group({
       name: this.fb.control(this.income == null ? '' : this.income.name),
       balance: this.fb.control(
@@ -109,20 +152,19 @@ export class IncomeDetailComponent implements OnInit {
         this.income == null ? 'EUR' : this.income.currency
       ),
       regularity: this.fb.group({
-        timePoints: this.fb.array([this.fb.group({
-          month: this.fb.control(this.income.regularity.timePoints[0].month),
-          days: this.fb.control(this.income.regularity.timePoints[0].days),
-        })
-        ])
+        timePoints: this.timePointFormArray
 
       })
     });
+    this.incomeForm.setValue(this.income2);
+    
 
   }
 
   public onChangeMonth(event) {
     console.log(event);
     this.incomeForm.get('regularity');
+   // this.incomeForm.setValue(this.income2);
   }
 
   public saveIncome(): void {

@@ -1,37 +1,24 @@
 @import "../../../../styles.scss";
 
 
-.budget {
+.income-form {
   display: flex;
   justify-content: center;
 }
 
-.budget-form {
+.amount-row {
   display: flex;
   @media screen and (max-width: $screen-lg-min) {
     flex-direction: column;
   }
   span {
-    margin-left: 0.5rem;
-    margin-right: 0.5rem;
+    margin-left: 0.1rem;
+    margin-right: 0.1rem;
     margin-top: 1.5rem;
   }
-
   input {
     width: 100%;
   }
-  
-}
-
-.p-dropdown.p-component {
-  width: 100% !important;;
-}
-
-.btn-add-periodity {
-  margin-left: 0.5rem;
-    margin-right: 0.5rem;
-    margin-top: 1.5rem;
-    width: 100% !important;
 }
 
 .balance {
@@ -43,66 +30,84 @@
   }
 }
 
+.btn-add-periodity {
+  margin-top: 1.5rem;
+  width: 100% !important;
+}
+
 .time-period {
   width: 100%;
   display: flex;
+  span {
+    margin-left: 0.1rem;
+    margin-right: 0.1rem;
+  }
   justify-content: space-between;
 }
 
-.content-header {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    border-bottom: 3px solid;
-    border-color: $oxford-blue;
-  
+.btn-footer {
+  display: flex;
+  justify-content: space-between;
+  width: 100%; 
+}
+
+.budget-cancel-btn {
+  font-family: "Open Sans", sans-serif;
+  cursor: pointer;
+  font-weight: 600;
+  color: white;
+  background-color: grey;
+  width: 10rem;
+  height: 2.2rem;
+  margin-top: 2rem;
+  border-radius: 7px;
+}
+
+.budget-cancel-btn:hover {
+  font-family: "Open Sans", sans-serif;
+  cursor: pointer;
+  font-weight: 600;
+  color: white;
+  opacity: 0.5;
+  background-color: grey;
+  width: 10rem;
+  height: 2.2rem;
+  margin-top: 2rem;
+  border-radius: 7px;
+}
+
+.budget-ok-btn:focus {
+  outline: 0;
+}
+
+:host ::ng-deep .p-multiselect {
+  min-width: 7rem;
+  max-width: 7rem;
+}
+
+
+:host ::ng-deep .p-multiselect-label {
+  text-overflow: inherit !important;
+  overflow: visible !important;
+
+}
+:host ::ng-deep .p-dropdown-year  {
+  .p-dropdown {
+    min-width: 4rem;
+    max-width: 4rem;
   }
+}
 
-  .btn-footer {
-    display: flex;
-    justify-content: space-between;
-    width: 100%; 
+:host ::ng-deep .p-dropdown-month {
+  .p-dropdown { 
+    min-width: 6rem;
+    max-width: 6rem;
   }
+}
 
-  .time-period-line {
-    display: flex;
-    justify-content: space-between;
-    width: 100%; 
-  }
+:host ::ng-deep .p-dropdown-label {
+  text-overflow: inherit !important;
+  overflow: visible !important;
 
-
-  .budget-cancel-btn {
-    font-family: "Open Sans", sans-serif;
-    margin-left: 10px;
-    cursor: pointer;
-    font-weight: 600;
-    color: white;
-    background-color: grey;
-    width: 10rem;
-    height: 2.2rem;
-    margin-top: 2rem;
-    border-radius: 7px;
-
-
-  }
-
-  .budget-cancel-btn:hover {
-    font-family: "Open Sans", sans-serif;
-    margin-left: 10px;
-    cursor: pointer;
-    font-weight: 600;
-    color: white;
-    opacity: 0.5;
-    background-color: grey;
-    width: 10rem;
-    height: 2.2rem;
-    margin-top: 2rem;
-    border-radius: 7px;
-
-  }
-
-  .budget-ok-btn:focus {
-    outline: 0;
-  }
-  
+}
 

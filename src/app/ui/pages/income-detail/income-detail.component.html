@@ -1,9 +1,10 @@
 <div class="content-header">
   <h1>Income</h1>
 </div>
-<div class="budget mt-1">
+<div class="income-form mt-1">
   <form [formGroup]="incomeForm" *ngIf="incomeForm">
-    <div class="budget-form">
+    <!--  Income name, amount and currency  -->
+    <div class="amount-row">
       <span class="p-float-label">
         <input id="float-input" type="text" formControlName="name" pInputText />
         <label for="float-input">Income name</label>
@@ -19,30 +20,34 @@
         </span>
       </div>
     </div>
-    <div class="budget-form">
-      <button class="btn-primary w-full btn-add-periodity" routerLink="..">Add periodity</button>
-    </div>
+    <!--  "Add periodity" - Button for adding periodity  -->
+    <button class="btn-primary btn-add-periodity" routerLink="..">Add periodity</button>
+
+    <!-- For for adding of a periodity -->
     <div class="budget-form">
       <form formGroupName="regularity" class="w-full">
-
         <ng-container formArrayName="timePoints">
           <div *ngFor="let timePoint of incomeForm.controls.regularity.controls.timePoints.controls; let i=index">
-            <div [formGroupName]="i" class="time-period">
-              <div class="time-period-line">
-                <span class="p-float-label w-full">
-                  <p-dropdown [autoWidth]="false" [options]="monthsOptions" (onChange)='onChangeMonth($event)'
-                    formControlName="month" optionLabel="name" optionValue="code">
-                  </p-dropdown>
-                </span>
-                <span class="p-float-label">
-                  <p-multiSelect [defaultLabel]="'Days'" [options]="daysOptions" formControlName="days" optionLabel="name" optionValue="code">
-                  </p-multiSelect>
-                </span>
-                <span class="p-float-label">
-                  <button *ngIf="i!=0" class="btn-secondary" routerLink="..">Remove</button>
-                  <button *ngIf="i==0" class="btn-secondary-disabled" routerLink="..">Remove</button>
-                </span>
-              </div>
+            <div [formGroupName]="i" class="time-period mt-1">
+              <span class="p-float-label">
+                <p-dropdown [autoWidth]="false" [options]="yearsOptions" (onChange)='onChangeMonth($event)'  class="p-dropdown-year"
+                  formControlName="year" optionLabel="name" optionValue="code">
+                </p-dropdown>
+              </span>
+              <span class="p-float-label">
+                <p-dropdown [autoWidth]="false" [options]="monthsOptions" (onChange)='onChangeMonth($event)' class="p-dropdown-month"
+                  formControlName="month" optionLabel="name" optionValue="code">
+                </p-dropdown>
+              </span>
+              <span class="p-float-label">
+                <p-multiSelect [defaultLabel]="'Days'" [options]="daysOptions" formControlName="days" optionLabel="name" selectedItemsLabel="{0} items"
+                  optionValue="code">
+                </p-multiSelect>
+              </span>
+              <span class="p-float-label">
+                <button *ngIf="i!=0" class="btn-secondary" routerLink="..">Remove</button>
+                <button *ngIf="i==0" class="btn-secondary-disabled" routerLink="..">Remove</button>
+              </span>
             </div>
           </div>
         </ng-container>
