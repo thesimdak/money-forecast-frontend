@@ -25,7 +25,7 @@ export class IncomeOutcomeFormComponent implements OnInit {
 
   public selectedCurrency: Currency;
   @Input()
-  public income: IncomeOutcome = {
+  public incomeOutcome: IncomeOutcome = {
     name: null,
     balance: null,
     currency: 'EUR',
@@ -38,24 +38,6 @@ export class IncomeOutcomeFormComponent implements OnInit {
     }
   };
 
-  public income2: IncomeOutcome = {
-    name: 'My account!',
-    balance: 1223,
-    currency: '',
-    regularity: {
-      timePoints: [{
-        year: 2021,
-        month: 7,
-        days: [2, 31]
-      },
-      {
-        year: 2021,
-        month: 9,
-        days: [31]
-      }]
-    }
-
-  };
 
   public timePointFormArray: FormArray = this.fb.array([
   ]);
@@ -134,7 +116,7 @@ export class IncomeOutcomeFormComponent implements OnInit {
     this.currencies = [{ name: 'EUR', code: 'EUR' }];
     this.selectedCurrency = this.currencies[0];
 
-    for (const timePoint of this.income2.regularity.timePoints) {
+    for (const timePoint of this.incomeOutcome.regularity.timePoints) {
       const timePointGroup = this.fb.group({
         year: this.fb.control(''),
         month: this.fb.control(''),
@@ -149,14 +131,14 @@ export class IncomeOutcomeFormComponent implements OnInit {
       name: this.fb.control(''),
       balance: this.fb.control(0),
       currency: this.fb.control(
-        this.income == null ? 'EUR' : this.income.currency
+        this.incomeOutcome == null ? 'EUR' : this.incomeOutcome.currency
       ),
       regularity: this.fb.group({
         timePoints: this.timePointFormArray
 
       })
     });
-    this.incomeForm.setValue(this.income2);
+    this.incomeForm.setValue(this.incomeOutcome);
     
 
   }
@@ -168,7 +150,7 @@ export class IncomeOutcomeFormComponent implements OnInit {
   }
 
   public saveIncome(): void {
-    if (this.income == null) {
+    if (this.incomeOutcome == null) {
       this.accountService.add(this.incomeForm.value);
     } else {
       this.accountService.update(this.incomeForm.value);

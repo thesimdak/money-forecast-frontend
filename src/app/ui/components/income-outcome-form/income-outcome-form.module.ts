@@ -5,6 +5,8 @@ import { InputTextModule } from 'primeng/inputtext';
 import { DropdownModule } from 'primeng/dropdown';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MultiSelectModule } from 'primeng/multiselect';
+import { Router, RouterModule } from '@angular/router';
+import { IncomeDetailRoutingModule } from '../../pages/income-detail/income-detail-routing.module';
 
 @NgModule({
   declarations: [IncomeOutcomeFormComponent],
@@ -16,6 +18,7 @@ import { MultiSelectModule } from 'primeng/multiselect';
     FormsModule,
     ReactiveFormsModule,
     MultiSelectModule,
+    IncomeDetailRoutingModule
   ],
 })
 export class IncomeOutcomeFormModule { }

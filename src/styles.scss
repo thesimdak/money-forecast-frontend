@@ -154,12 +154,25 @@ $screen-xl-min: 1200px;
   border-radius: 10px;
 }
 
-.btn-primary:hover, .btn-primary:focus {
+.btn-primary:hover {
   font-family: "Open Sans", sans-serif;
   cursor: pointer;
   font-weight: 600;
   color: white;
   opacity: 0.5;
+  background-color: $byzantium;
+  border: none;
+  width: 5rem;
+  height: 2.2rem;
+  border-radius: 10px;
+}
+
+.btn-primary:active {
+  font-family: "Open Sans", sans-serif;
+  cursor: pointer;
+  font-weight: 600;
+  color: white;
+  opacity: 0.3;
   background-color: $byzantium;
   border: none;
   width: 5rem;
@@ -196,7 +209,7 @@ $screen-xl-min: 1200px;
   border-radius: 10px;
 }
 
-.btn-secondary:hover, .btn-secondary:focus {
+.btn-secondary:hover {
   font-family: "Open Sans", sans-serif;
   cursor: pointer;
   font-weight: 600;
@@ -208,6 +221,20 @@ $screen-xl-min: 1200px;
   height: 2.2rem;
   border-radius: 10px;
 }
+
+.btn-secondary:active {
+  font-family: "Open Sans", sans-serif;
+  cursor: pointer;
+  font-weight: 600;
+  color: white;
+  opacity: 0.3;
+  background-color: grey;
+  border: none;
+  width: 5rem;
+  height: 2.2rem;
+  border-radius: 10px;
+}
+
 
 .btn-secondary:focus {
   outline: 0;
