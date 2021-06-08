@@ -15,11 +15,11 @@ interface Month {
 }
 
 @Component({
-  selector: 'app-income-detail-forecast',
-  templateUrl: './income-detail.component.html',
-  styleUrls: ['./income-detail.component.scss'],
+  selector: 'app-outcome-detail-forecast',
+  templateUrl: './outcome-detail.component.html',
+  styleUrls: ['./outcome-detail.component.scss'],
 })
-export class IncomeDetailComponent implements OnInit {
+export class OutcomeDetailComponent implements OnInit {
   public currencies: Currency[];
 
   public selectedCurrency: Currency;

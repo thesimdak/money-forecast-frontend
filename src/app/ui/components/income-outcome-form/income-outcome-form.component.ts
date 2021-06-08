@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, FormArray } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { Currency } from 'src/app/models/currency.interface';
 import { IncomeOutcome } from 'src/app/models/income-outcome.interface';
 import { AccountService } from 'src/app/store/data-service/account.service';
@@ -15,11 +15,12 @@ interface Month {
 }
 
 @Component({
-  selector: 'app-income-detail-forecast',
-  templateUrl: './income-detail.component.html',
-  styleUrls: ['./income-detail.component.scss'],
+  selector: 'app-income-outcome-form',
+  templateUrl: './income-outcome-form.component.html',
+  styleUrls: ['./income-outcome-form.component.scss']
 })
-export class IncomeDetailComponent implements OnInit {
+export class IncomeOutcomeFormComponent implements OnInit {
+
   public currencies: Currency[];
 
   public selectedCurrency: Currency;
@@ -142,12 +143,11 @@ export class IncomeDetailComponent implements OnInit {
       timePointGroup.setValue(timePoint);
       this.timePointFormArray.push(timePointGroup);
     }
+    
 
     this.incomeForm = this.fb.group({
-      name: this.fb.control(this.income == null ? '' : this.income.name),
-      balance: this.fb.control(
-        this.income == null ? '' : this.income.balance
-      ),
+      name: this.fb.control(''),
+      balance: this.fb.control(0),
       currency: this.fb.control(
         this.income == null ? 'EUR' : this.income.currency
       ),

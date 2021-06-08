@@ -29,6 +29,10 @@ const routes: Routes = [
   {
     path: 'incomes/income-detail',
     loadChildren: () => import('./ui/pages/income-detail/income-detail.module').then(m => m.IncomeDetailModule)
+  },
+  {
+    path: 'outcomes/outcome-detail',
+    loadChildren: () => import('./ui/pages/outcome-detail/outcome-detail.module').then(m => m.OutcomeDetailModule)
   }
 ];
 

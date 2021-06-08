@@ -1,7 +1,6 @@
-import { Currency } from "./currency.interface";
 import { Regularity } from "./regularity.interface";
 
-export interface Income {
+export interface IncomeOutcome {
   name: string,
   balance: number,
   currency: string,
