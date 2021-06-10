@@ -167,13 +167,9 @@ export class OutcomeDetailComponent implements OnInit {
    // this.incomeForm.setValue(this.income2);
   }
 
-  public saveIncome(): void {
-    if (this.income == null) {
-      this.accountService.add(this.incomeForm.value);
-    } else {
-      this.accountService.update(this.incomeForm.value);
-    }
 
-    console.log(this.incomeForm.value);
+
+  public saveOutcome(outcome: IncomeOutcome) {
+    console.log(outcome);
   }
 }

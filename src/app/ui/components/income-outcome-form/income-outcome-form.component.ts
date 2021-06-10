@@ -1,5 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
+import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Currency } from 'src/app/models/currency.interface';
 import { IncomeOutcome } from 'src/app/models/income-outcome.interface';
 import { AccountService } from 'src/app/store/data-service/account.service';
@@ -21,6 +21,8 @@ interface Month {
 })
 export class IncomeOutcomeFormComponent implements OnInit {
 
+  @ViewChild('incomeOutcomeFormElement') incomeOutcomeFormElement: ElementRef;
+
   public currencies: Currency[];
 
   public selectedCurrency: Currency;
@@ -38,10 +40,13 @@ export class IncomeOutcomeFormComponent implements OnInit {
     }
   };
 
+  @Output()
+  public updateIncomeOutComeEvent = new EventEmitter<IncomeOutcome>();
+
 
   public timePointFormArray: FormArray = this.fb.array([
   ]);
-  public incomeForm: FormGroup;
+  public incomeOutcomeForm: FormGroup;
 
   yearsOptions: Day[];
   daysOptions: Day[];
@@ -120,16 +125,16 @@ export class IncomeOutcomeFormComponent implements OnInit {
       const timePointGroup = this.fb.group({
         year: this.fb.control(''),
         month: this.fb.control(''),
-        days: this.fb.control(''),
+        days: this.fb.control('', Validators.required),
       })
       timePointGroup.setValue(timePoint);
       this.timePointFormArray.push(timePointGroup);
     }
     
 
-    this.incomeForm = this.fb.group({
-      name: this.fb.control(''),
-      balance: this.fb.control(0),
+    this.incomeOutcomeForm = this.fb.group({
+      name: this.fb.control('', Validators.required),
+      balance: this.fb.control(0, Validators.required),
       currency: this.fb.control(
         this.incomeOutcome == null ? 'EUR' : this.incomeOutcome.currency
       ),
@@ -138,24 +143,59 @@ export class IncomeOutcomeFormComponent implements OnInit {
 
       })
     });
-    this.incomeForm.setValue(this.incomeOutcome);
+    this.incomeOutcomeForm.setValue(this.incomeOutcome);
     
 
   }
 
   public onChangeMonth(event) {
     console.log(event);
-    this.incomeForm.get('regularity');
+    this.incomeOutcomeForm.get('regularity');
    // this.incomeForm.setValue(this.income2);
   }
 
-  public saveIncome(): void {
-    if (this.incomeOutcome == null) {
-      this.accountService.add(this.incomeForm.value);
-    } else {
-      this.accountService.update(this.incomeForm.value);
+  public save(): boolean {
+    this.markDirty();
+    if (this.incomeOutcomeForm.valid) {
+      this.updateIncomeOutComeEvent.emit(this.incomeOutcomeForm.value);
     }
-
-    console.log(this.incomeForm.value);
+    return false;
   }
+
+  private markDirty() {
+    this.markGroupDirty(this.incomeOutcomeForm);
+    console.log('FORM:', this.incomeOutcomeForm);}
+    markGroupDirty(formGroup: FormGroup) {
+    Object.keys(formGroup.controls).forEach(key => {
+      switch (formGroup.get(key).constructor.name) {
+        case "FormGroup":
+          this.markGroupDirty(formGroup.get(key) as FormGroup);
+          break;
+        case "FormArray":
+          this.markArrayDirty(formGroup.get(key) as FormArray);
+          break;
+        case "FormControl":
+          this.markControlDirty(formGroup.get(key) as FormControl);
+          break;
+      }
+    });
+    }
+    private markArrayDirty(formArray: FormArray) {
+    formArray.controls.forEach(control => {
+      switch (control.constructor.name) {
+        case "FormGroup":
+          this.markGroupDirty(control as FormGroup);
+          break;
+        case "FormArray":
+          this.markArrayDirty(control as FormArray);
+          break;
+        case "FormControl":
+          this.markControlDirty(control as FormControl);
+          break;
+      }
+     });
+    }
+    markControlDirty(formControl: FormControl) {
+         formControl.markAsDirty();
+    }
 }

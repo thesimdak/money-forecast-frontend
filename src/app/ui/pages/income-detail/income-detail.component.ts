@@ -41,4 +41,8 @@ export class IncomeDetailComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
+  public saveIncome(income: IncomeOutcome) {
+    console.log(income);
+  }
 }
