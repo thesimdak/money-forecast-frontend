@@ -18,7 +18,7 @@
       </div>
     </div>
     <!--  "Add periodity" - Button for adding periodity  -->
-    <button class="btn-primary btn-add-periodity">Add periodity</button>
+    <button class="btn-primary btn-add-periodity" (click)="addPeriodity()">Add periodity</button>
 
     <!-- For for adding of a periodity -->
     <div class="budget-form">
@@ -42,8 +42,8 @@
                 </p-multiSelect>
               </span>
               <span class="p-float-label">
-                <button *ngIf="i!=0" class="btn-secondary" routerLink="..">Remove</button>
-                <button *ngIf="i==0" class="btn-secondary-disabled" routerLink="..">Remove</button>
+                <button *ngIf="incomeOutcomeForm.controls.regularity.controls.timePoints.controls.length > 0" class="btn-secondary" (click)="removePeriodity(i)">Remove</button>
+                <button *ngIf="incomeOutcomeForm.controls.regularity.controls.timePoints.controls.length == 0" class="btn-secondary-disabled">Remove</button>
               </span>
             </div>
           </div>

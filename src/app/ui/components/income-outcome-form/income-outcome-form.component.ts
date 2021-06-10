@@ -122,15 +122,11 @@ export class IncomeOutcomeFormComponent implements OnInit {
     this.selectedCurrency = this.currencies[0];
 
     for (const timePoint of this.incomeOutcome.regularity.timePoints) {
-      const timePointGroup = this.fb.group({
-        year: this.fb.control(''),
-        month: this.fb.control(''),
-        days: this.fb.control('', Validators.required),
-      })
+      const timePointGroup = this.createPeriodityFormGroup();
       timePointGroup.setValue(timePoint);
       this.timePointFormArray.push(timePointGroup);
     }
-    
+
 
     this.incomeOutcomeForm = this.fb.group({
       name: this.fb.control('', Validators.required),
@@ -144,14 +140,14 @@ export class IncomeOutcomeFormComponent implements OnInit {
       })
     });
     this.incomeOutcomeForm.setValue(this.incomeOutcome);
-    
+
 
   }
 
   public onChangeMonth(event) {
     console.log(event);
     this.incomeOutcomeForm.get('regularity');
-   // this.incomeForm.setValue(this.income2);
+    // this.incomeForm.setValue(this.income2);
   }
 
   public save(): boolean {
@@ -162,10 +158,29 @@ export class IncomeOutcomeFormComponent implements OnInit {
     return false;
   }
 
+  public addPeriodity(): void {
+    const periodityFormGroup = this.createPeriodityFormGroup();
+    this.timePointFormArray.push(periodityFormGroup);
+
+  }
+
+  public removePeriodity(index: number): void {
+    this.timePointFormArray.removeAt(index);
+  }
+
+  private createPeriodityFormGroup(): FormGroup {
+    return this.fb.group({
+      year: this.fb.control(''),
+      month: this.fb.control(''),
+      days: this.fb.control('', Validators.required),
+    })
+  }
+
   private markDirty() {
     this.markGroupDirty(this.incomeOutcomeForm);
-    console.log('FORM:', this.incomeOutcomeForm);}
-    markGroupDirty(formGroup: FormGroup) {
+    console.log('FORM:', this.incomeOutcomeForm);
+  }
+  markGroupDirty(formGroup: FormGroup) {
     Object.keys(formGroup.controls).forEach(key => {
       switch (formGroup.get(key).constructor.name) {
         case "FormGroup":
@@ -179,8 +194,8 @@ export class IncomeOutcomeFormComponent implements OnInit {
           break;
       }
     });
-    }
-    private markArrayDirty(formArray: FormArray) {
+  }
+  private markArrayDirty(formArray: FormArray) {
     formArray.controls.forEach(control => {
       switch (control.constructor.name) {
         case "FormGroup":
@@ -193,9 +208,9 @@ export class IncomeOutcomeFormComponent implements OnInit {
           this.markControlDirty(control as FormControl);
           break;
       }
-     });
-    }
-    markControlDirty(formControl: FormControl) {
-         formControl.markAsDirty();
-    }
+    });
+  }
+  markControlDirty(formControl: FormControl) {
+    formControl.markAsDirty();
+  }
 }
