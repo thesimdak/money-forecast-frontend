@@ -27,17 +27,17 @@
           <div *ngFor="let timePoint of incomeOutcomeForm.controls.regularity.controls.timePoints.controls; let i=index">
             <div [formGroupName]="i" class="time-period mt-1">
               <span class="p-float-label">
-                <p-dropdown [autoWidth]="false" [options]="yearsOptions" (onChange)='onChangeMonth($event)'
+                <p-dropdown [autoWidth]="false" [options]="yearsOptions" (onChange)='onChangeYearOnMonth($event, i)'
                   class="p-dropdown-year" formControlName="year" optionLabel="name" optionValue="code">
                 </p-dropdown>
               </span>
               <span class="p-float-label">
-                <p-dropdown [autoWidth]="false" [options]="monthsOptions" (onChange)='onChangeMonth($event)'
+                <p-dropdown [autoWidth]="false" [options]="monthsOptions" (onChange)='onChangeYearOnMonth($event, i)'
                   class="p-dropdown-month" formControlName="month" optionLabel="name" optionValue="code">
                 </p-dropdown>
               </span>
               <span class="p-float-label">
-                <p-multiSelect [defaultLabel]="'Days'" [options]="daysOptions" formControlName="days" optionLabel="name"
+                <p-multiSelect [defaultLabel]="'Days'" [options]="daysOptions[i]" formControlName="days" optionLabel="name"
                   selectedItemsLabel="{0} items" optionValue="code">
                 </p-multiSelect>
               </span>

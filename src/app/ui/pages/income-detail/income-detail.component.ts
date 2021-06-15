@@ -24,7 +24,7 @@ export class IncomeDetailComponent implements OnInit {
   public income: IncomeOutcome = {
     name: 'My account!',
     balance: 1223,
-    currency: '',
+    currency: 'EUR',
     regularity: {
       timePoints: [{
         year: 2021,
@@ -34,7 +34,7 @@ export class IncomeDetailComponent implements OnInit {
       {
         year: 2021,
         month: 9,
-        days: [31]
+        days: [30]
       }]
     }
   };

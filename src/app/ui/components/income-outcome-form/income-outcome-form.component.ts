@@ -1,5 +1,6 @@
 import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { last } from 'rxjs/operators';
 import { Currency } from 'src/app/models/currency.interface';
 import { IncomeOutcome } from 'src/app/models/income-outcome.interface';
 import { AccountService } from 'src/app/store/data-service/account.service';
@@ -14,14 +15,18 @@ interface Month {
   code: number;
 }
 
+
+interface Year {
+  name: string;
+  code: number;
+}
+
 @Component({
   selector: 'app-income-outcome-form',
   templateUrl: './income-outcome-form.component.html',
   styleUrls: ['./income-outcome-form.component.scss']
 })
 export class IncomeOutcomeFormComponent implements OnInit {
-
-  @ViewChild('incomeOutcomeFormElement') incomeOutcomeFormElement: ElementRef;
 
   public currencies: Currency[];
 
@@ -48,8 +53,8 @@ export class IncomeOutcomeFormComponent implements OnInit {
   ]);
   public incomeOutcomeForm: FormGroup;
 
-  yearsOptions: Day[];
-  daysOptions: Day[];
+  yearsOptions: Year[];
+  daysOptions: Day[][];
   daysOptions28: Day[];
   daysOptions30: Day[];
   daysOptions31: Day[];
@@ -57,54 +62,10 @@ export class IncomeOutcomeFormComponent implements OnInit {
   monthsOptions: Month[];
 
 
-  constructor(private accountService: AccountService, private fb: FormBuilder) {
-    this.yearsOptions = [
-      { name: 'Yearly', code: 0 },
-      { name: '2021', code: 2021 },
-      { name: '2022', code: 2022 },
-      { name: '2023', code: 2023 },
-      { name: '2024', code: 2024 },
-      { name: '2025', code: 2025 },
-    ];
+  constructor(private fb: FormBuilder) {
 
-    this.daysOptions28 = [
-      { name: '1.', code: 1 },
-      { name: '2.', code: 2 },
-      { name: '3.', code: 3 },
-      { name: '4.', code: 4 },
-      { name: '5.', code: 5 },
-      { name: '6.', code: 6 },
-      { name: '7.', code: 7 },
-      { name: '8.', code: 8 },
-      { name: '9.', code: 9 },
-      { name: '10.', code: 10 },
-      { name: '11.', code: 11 },
-      { name: '12.', code: 12 },
-      { name: '13.', code: 13 },
-      { name: '14.', code: 14 },
-      { name: '15.', code: 15 },
-      { name: '16.', code: 16 },
-      { name: '17.', code: 17 },
-      { name: '18.', code: 18 },
-      { name: '19.', code: 19 },
-      { name: '20.', code: 20 },
-      { name: '21.', code: 21 },
-      { name: '22.', code: 22 },
-      { name: '23.', code: 23 },
-      { name: '24.', code: 24 },
-      { name: '25.', code: 25 },
-      { name: '26.', code: 26 },
-      { name: '27.', code: 27 },
-      { name: '28.', code: 28 },
-    ];
-
-    this.daysOptions30 = this.daysOptions28;
-    this.daysOptions30.push({ name: '29.', code: 29 });
-    this.daysOptions30.push({ name: '30.', code: 30 });
-    this.daysOptions31 = this.daysOptions30;
-    this.daysOptions31.push({ name: '31.', code: 31 });
-
-    this.daysOptions = this.daysOptions28;
+    this.daysOptions = [];
+    this.yearsOptions = [];
 
     this.monthsOptions = [
       { name: 'January', code: 1 },
@@ -112,9 +73,24 @@ export class IncomeOutcomeFormComponent implements OnInit {
       { name: 'Merch', code: 3 },
       { name: 'April', code: 4 },
       { name: 'May', code: 5 },
+      { name: 'June', code: 6 },
+      { name: 'July', code: 7 },
+      { name: 'August', code: 8 },
       { name: 'September', code: 9 },
       { name: 'October', code: 10 },
+      { name: 'November', code: 11 },
+      { name: 'December', code: 12 },
     ];
+    this.yearsOptions.push({
+      name: 'Yearly',
+      code: 0
+    })
+    for (let i = new Date().getFullYear(); i <= new Date().getFullYear() + 50; i++) {
+      this.yearsOptions.push({
+        name: i + '',
+        code: i
+      })
+    }
   }
 
   ngOnInit(): void {
@@ -125,6 +101,7 @@ export class IncomeOutcomeFormComponent implements OnInit {
       const timePointGroup = this.createPeriodityFormGroup();
       timePointGroup.setValue(timePoint);
       this.timePointFormArray.push(timePointGroup);
+      this.daysOptions.push(this.createDayOptionsForMonth(timePoint.year, timePoint.month));
     }
 
 
@@ -136,7 +113,6 @@ export class IncomeOutcomeFormComponent implements OnInit {
       ),
       regularity: this.fb.group({
         timePoints: this.timePointFormArray
-
       })
     });
     this.incomeOutcomeForm.setValue(this.incomeOutcome);
@@ -144,10 +120,11 @@ export class IncomeOutcomeFormComponent implements OnInit {
 
   }
 
-  public onChangeMonth(event) {
-    console.log(event);
-    this.incomeOutcomeForm.get('regularity');
-    // this.incomeForm.setValue(this.income2);
+  public onChangeYearOnMonth(event, index: number) {
+    const year = this.timePointFormArray.value[index].year;
+    const month = this.timePointFormArray.value[index].month;
+     this.timePointFormArray.controls[index].get('days').setValue([]);
+    this.daysOptions[index] = this.createDayOptionsForMonth(year, month);
   }
 
   public save(): boolean {
@@ -161,24 +138,41 @@ export class IncomeOutcomeFormComponent implements OnInit {
   public addPeriodity(): void {
     const periodityFormGroup = this.createPeriodityFormGroup();
     this.timePointFormArray.push(periodityFormGroup);
+    const timePoint = this.timePointFormArray.value[this.timePointFormArray.length-1];
+    this.daysOptions.push(this.createDayOptionsForMonth(timePoint.year, timePoint.month));
 
   }
 
   public removePeriodity(index: number): void {
     this.timePointFormArray.removeAt(index);
+    this.daysOptions.splice(index);
+  }
+
+  private createDayOptionsForMonth(year: number, month: number): Day[] {
+    let dayCount = new Date(year, month, 0).getDate();
+    if (year === 0 && month == 2) {
+      dayCount = 28;
+    }
+    const days = [];
+    for (let i = 1; i <= dayCount; i++) {
+      days.push({
+        name: i + '.',
+        code: i
+      })
+    }
+    return days;
   }
 
   private createPeriodityFormGroup(): FormGroup {
     return this.fb.group({
-      year: this.fb.control(''),
-      month: this.fb.control(''),
+      year: this.fb.control(0),
+      month: this.fb.control(1),
       days: this.fb.control('', Validators.required),
     })
   }
 
   private markDirty() {
     this.markGroupDirty(this.incomeOutcomeForm);
-    console.log('FORM:', this.incomeOutcomeForm);
   }
   markGroupDirty(formGroup: FormGroup) {
     Object.keys(formGroup.controls).forEach(key => {
