@@ -145,7 +145,7 @@ export class IncomeOutcomeFormComponent implements OnInit {
 
   public removePeriodity(index: number): void {
     this.timePointFormArray.removeAt(index);
-    this.daysOptions.splice(index);
+    this.daysOptions.splice(index, 1);
   }
 
   private createDayOptionsForMonth(year: number, month: number): Day[] {
