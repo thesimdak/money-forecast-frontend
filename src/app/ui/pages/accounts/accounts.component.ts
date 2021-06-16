@@ -12,11 +12,11 @@ import { Account } from "src/app/models/account.interface";
   encapsulation: ViewEncapsulation.ShadowDom,
 })
 export class AccountsComponent implements OnInit, OnDestroy {
-  
+
   public budget: number;
   public accounts: Account[];
   public accounts$: Observable<Account[]>;
-  private destroy$: Subject<boolean> = new Subject<boolean>(); 
+  private destroy$: Subject<boolean> = new Subject<boolean>();
 
   constructor(private accountService: AccountService) { }
 
@@ -26,7 +26,19 @@ export class AccountsComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.accounts$ = this.accountService.load();
+    //this.accounts$ = this.accountService.load();
+    this.accounts$ = new Observable(subscriber => {
+      subscriber.next([{
+        name: 'BTV',
+        balance: 2500,
+        currency: 'EUR'
+      },
+      {
+        name: 'Hypo Tirol Bank',
+        balance: 2500,
+        currency: 'EUR'
+      }]);
+    });
     this.accounts$.pipe(takeUntil(this.destroy$)).subscribe(accounts => this.accounts = accounts);
   }
 

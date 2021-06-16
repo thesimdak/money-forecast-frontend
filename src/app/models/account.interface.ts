@@ -1,5 +1,5 @@
 export interface Account {
     name: string,
     balance: number,
-    currency: number
+    currency: string
 }
