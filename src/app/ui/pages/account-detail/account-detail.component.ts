@@ -1,7 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Account } from 'src/app/models/account.interface';
-import { AccountService } from 'src/app/store/data-service/account.service';
 
 interface Currency {
   name: string;
@@ -21,7 +20,7 @@ export class AccountDetailComponent implements OnInit {
   public account: Account;
   public accountForm: FormGroup;
 
-  constructor(private accountService: AccountService) {}
+  constructor() {}
 
   ngOnInit(): void {
     this.currencies = [{ name: 'EUR', code: 'EUR' }];
@@ -34,12 +33,6 @@ export class AccountDetailComponent implements OnInit {
   }
 
   public saveAccount(): void {
-    if (this.account == null) {
-      this.accountService.add(this.accountForm.value);
-    } else {
-      this.accountService.update(this.accountForm.value);
-    }
-
     console.log(this.accountForm.value);
   }
 }

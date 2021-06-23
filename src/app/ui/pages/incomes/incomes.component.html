@@ -3,10 +3,9 @@
 <div class="mt-2 income-subheader">
   <button class="btn-primary" routerLink="./income-detail">Add</button>
 </div>
-<app-amount-panel [title]="'Gehalt'" [amount]="'2430'" [routerLink]="'./income-detail'"></app-amount-panel>
-<app-amount-panel [title]="'Gehalt'" [amount]="'2430'" [routerLink]="'./income-detail'"></app-amount-panel>
-<app-amount-panel [title]="'Gehalt'" [amount]="'2430'" [routerLink]="'./income-detail'"></app-amount-panel>
-<app-amount-panel [title]="'Gehalt'" [amount]="'2430'" [routerLink]="'./income-detail'"></app-amount-panel>
+<ng-container *ngFor="let income of incomes$ | async; let i=index">
+  <app-amount-panel [title]="income.name" [amount]="income.balance" [routerLink]="'./income-detail'"></app-amount-panel>
+</ng-container>
 <app-amount-panel
   [title]="'Kaution rückgabe'"
   [amount]="'2550'"

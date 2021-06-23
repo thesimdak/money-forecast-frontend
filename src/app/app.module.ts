@@ -7,10 +7,11 @@ import { NavigationModule } from './ui/components/navigation/navigation.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
-import { EntityDataModule } from '@ngrx/data';
-import { entityConfig } from './store/entity-metadata';
 import { HttpClientModule } from '@angular/common/http';
-import { EntityStoreModule } from './store/entity-store.module';
+import { incomesReducer } from './state/incomes/incomes.reducer';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from 'src/environments/environment';
+import { IncomesEffects } from './state/incomes/incomes.effects';
 
 @NgModule({
   declarations: [
@@ -22,10 +23,13 @@ import { EntityStoreModule } from './store/entity-store.module';
     NavigationModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    EntityStoreModule,
-    EffectsModule.forRoot([]),
-    StoreModule.forRoot({}),
-    EntityDataModule.forRoot(entityConfig)
+    EffectsModule.forRoot([IncomesEffects]),
+    StoreModule.forRoot({ incomes: incomesReducer }),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25, // Retains last 25 states
+      logOnly: environment.production, // Restrict extension to log-only mode
+      autoPause: true, // Pauses recording actions and state changes when the extension window is not open
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent]

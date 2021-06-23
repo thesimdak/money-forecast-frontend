@@ -9,14 +9,14 @@ import { Component, Input, OnInit } from '@angular/core';
 export class AmountPanelComponent implements OnInit {
 
   @Input()
-  public title;
+  public title: string;
 
   @Input()
-  public amount;
+  public amount: string;
 
   
   @Input()
-  public description = 'Einmal pro monat';  
+  public description: string;  
 
 
   constructor(http: HttpClient) { 

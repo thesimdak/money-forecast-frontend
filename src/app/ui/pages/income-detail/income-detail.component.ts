@@ -1,48 +1,41 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, FormArray } from '@angular/forms';
-import { Currency } from 'src/app/models/currency.interface';
+import { Router } from '@angular/router';
+import { select } from '@ngrx/store';
+import { Store } from '@ngrx/store';
 import { IncomeOutcome } from 'src/app/models/income-outcome.interface';
-import { AccountService } from 'src/app/store/data-service/account.service';
-
-interface Day {
-  name: string;
-  code: number;
-}
-
-interface Month {
-  name: string;
-  code: number;
-}
-
+import { IncomeService } from 'src/app/services/income.service';
+import { AppState } from 'src/app/state/app.state';
+import { selectIncomes } from 'src/app/state/incomes/incomes.selectors';
+import { addIncome, retrievedIncomeList } from '../../../state/incomes/incomes.actions';
 @Component({
   selector: 'app-income-detail-forecast',
   templateUrl: './income-detail.component.html',
   styleUrls: ['./income-detail.component.scss'],
 })
 export class IncomeDetailComponent implements OnInit {
-  
+
   public income: IncomeOutcome = {
-    name: 'My account!',
-    balance: 1223,
+    name: '',
+    balance: 0,
     currency: 'EUR',
     regularity: {
       timePoints: [{
-        year: 2021,
-        month: 7,
-        days: [2, 31]
-      },
-      {
-        year: 2021,
-        month: 9,
-        days: [30]
+        year: 0,
+        month: new Date().getMonth() + 1,
+        days: []
       }]
     }
   };
+
+  constructor(private incomeService: IncomeService, private router: Router) {
+  }
 
   ngOnInit(): void {
   }
 
   public saveIncome(income: IncomeOutcome) {
-    console.log(income);
+    this.incomeService.addIncome(income);
+    this.router.navigate(['../incomes']);
   }
+
 }

@@ -1,7 +1,6 @@
 import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { AccountService } from 'src/app/store/data-service/account.service';
 
 import { Account } from "src/app/models/account.interface";
 
@@ -18,7 +17,7 @@ export class AccountsComponent implements OnInit, OnDestroy {
   public accounts$: Observable<Account[]>;
   private destroy$: Subject<boolean> = new Subject<boolean>();
 
-  constructor(private accountService: AccountService) { }
+  constructor() { }
 
   ngOnDestroy(): void {
     this.destroy$.next();

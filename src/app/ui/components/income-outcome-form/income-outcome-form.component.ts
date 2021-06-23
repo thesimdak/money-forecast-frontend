@@ -3,8 +3,6 @@ import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@ang
 import { last } from 'rxjs/operators';
 import { Currency } from 'src/app/models/currency.interface';
 import { IncomeOutcome } from 'src/app/models/income-outcome.interface';
-import { AccountService } from 'src/app/store/data-service/account.service';
-
 interface Day {
   name: string;
   code: number;
@@ -166,7 +164,7 @@ export class IncomeOutcomeFormComponent implements OnInit {
   private createPeriodityFormGroup(): FormGroup {
     return this.fb.group({
       year: this.fb.control(0),
-      month: this.fb.control(1),
+      month: this.fb.control(new Date().getMonth() + 1),
       days: this.fb.control('', Validators.required),
     })
   }
