@@ -16,7 +16,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    loadChildren: () => import('./ui/pages/landing/landing.module').then(m => m.LandingModule)
+    loadChildren: () => import('./ui/pages/forecast/forecast.module').then(m => m.ForecastModule)
   },  
   {
     path: 'accounts',

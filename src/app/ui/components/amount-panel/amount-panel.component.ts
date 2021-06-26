@@ -1,4 +1,5 @@
 import { HttpClient } from '@angular/common/http';
+import { EventEmitter, Output } from '@angular/core';
 import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
@@ -14,16 +15,22 @@ export class AmountPanelComponent implements OnInit {
   @Input()
   public amount: string;
 
-  
   @Input()
-  public description: string;  
+  public description: string;
+
+  @Output()
+  public removeClick: EventEmitter<void> = new EventEmitter();
 
 
-  constructor(http: HttpClient) { 
+  constructor() { 
 
   }
 
   ngOnInit(): void {
+  }
+
+  public remove(): void {
+    this.removeClick.emit();
   }
 
 }

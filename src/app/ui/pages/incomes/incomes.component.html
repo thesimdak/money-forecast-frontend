@@ -4,10 +4,6 @@
   <button class="btn-primary" routerLink="./income-detail">Add</button>
 </div>
 <ng-container *ngFor="let income of incomes$ | async; let i=index">
-  <app-amount-panel [title]="income.name" [amount]="income.balance" [routerLink]="'./income-detail'"></app-amount-panel>
+  <app-amount-panel [title]="income.name" [amount]="income.balance" [routerLink]="'./income-detail/' + income.id" (removeClick)="removeIncome(income.id)">
+  </app-amount-panel>
 </ng-container>
-<app-amount-panel
-  [title]="'Kaution rückgabe'"
-  [amount]="'2550'"
-  [routerLink]="'./income-detail'"
-></app-amount-panel>

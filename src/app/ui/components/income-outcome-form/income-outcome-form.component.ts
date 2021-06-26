@@ -30,18 +30,7 @@ export class IncomeOutcomeFormComponent implements OnInit {
 
   public selectedCurrency: Currency;
   @Input()
-  public incomeOutcome: IncomeOutcome = {
-    name: null,
-    balance: null,
-    currency: 'EUR',
-    regularity: {
-      timePoints: [{
-        year: null,
-        month: null,
-        days: []
-      }]
-    }
-  };
+  public incomeOutcome: IncomeOutcome;
 
   @Output()
   public updateIncomeOutComeEvent = new EventEmitter<IncomeOutcome>();
@@ -66,6 +55,7 @@ export class IncomeOutcomeFormComponent implements OnInit {
     this.yearsOptions = [];
 
     this.monthsOptions = [
+      { name: 'Monthly', code: 0 },
       { name: 'January', code: 1 },
       { name: 'February', code: 2 },
       { name: 'Merch', code: 3 },
@@ -104,6 +94,7 @@ export class IncomeOutcomeFormComponent implements OnInit {
 
 
     this.incomeOutcomeForm = this.fb.group({
+      id: this.fb.control(''),
       name: this.fb.control('', Validators.required),
       balance: this.fb.control(0, Validators.required),
       currency: this.fb.control(
@@ -164,7 +155,7 @@ export class IncomeOutcomeFormComponent implements OnInit {
   private createPeriodityFormGroup(): FormGroup {
     return this.fb.group({
       year: this.fb.control(0),
-      month: this.fb.control(new Date().getMonth() + 1),
+      month: this.fb.control(0),
       days: this.fb.control('', Validators.required),
     })
   }

@@ -2,16 +2,26 @@ import { createAction, props } from '@ngrx/store';
 import { IncomeOutcome } from '../../models/income-outcome.interface';
      
 export const addIncome = createAction(
-  '[Income List] Add Income',
+  '[Incomes] Add Income',
   props<{ income: IncomeOutcome }>()
 );
 
 export const addIncomeSuccess = createAction(
-  '[Income List] Add Income Success',
+  '[Incomes] Add Income Success',
   props<{ income: IncomeOutcome }>()
+);
+
+export const removeIncome = createAction(
+  '[Incomes] Remove Income',
+  props<{ id: string }>()
+);
+
+export const removeIncomeSuccess = createAction(
+  '[Incomes] Remove Income Success',
+  props<{ id: string }>()
 );
   
 export const retrievedIncomeList = createAction(
-  '[Income List] Retrieved Incomes Success',
+  '[Incomes] Retrieved Incomes Success',
   props<{ incomes: IncomeOutcome []}>()
 );

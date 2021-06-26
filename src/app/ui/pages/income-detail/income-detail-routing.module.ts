@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { IncomeDetailComponent } from './income-detail.component';
 
 
-const routes: Routes = [{ path: '', component: IncomeDetailComponent }];
+const routes: Routes = [{ path: '', component: IncomeDetailComponent }, { path: ':id', component: IncomeDetailComponent }];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

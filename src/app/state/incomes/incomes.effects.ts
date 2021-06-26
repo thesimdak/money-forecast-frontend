@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { EMPTY, EmptyError } from 'rxjs';
-import { map, mergeMap, catchError, tap, concatMap, exhaustMap } from 'rxjs/operators';
+import { map, exhaustMap } from 'rxjs/operators';
 import { IncomeService } from '../../services/income.service';
-import { addIncome, addIncomeSuccess, retrievedIncomeList } from './incomes.actions';
+import { addIncome, addIncomeSuccess, removeIncome, removeIncomeSuccess, retrievedIncomeList } from './incomes.actions';
 
 @Injectable()
 export class IncomesEffects {
@@ -14,6 +13,16 @@ export class IncomesEffects {
             exhaustMap(action =>
                 this.incomeService.saveIncome(action.income).pipe(
                   map(income => addIncomeSuccess({income}))
+                )
+              )
+        ));
+
+        removeIncome$ = createEffect(() =>
+        this.actions$.pipe(
+            ofType(removeIncome),
+            exhaustMap(action =>
+                this.incomeService.deleteIncome(action.id).pipe(
+                  map(id => removeIncomeSuccess({id}))
                 )
               )
         ));
