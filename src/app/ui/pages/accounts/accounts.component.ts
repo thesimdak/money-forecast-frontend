@@ -3,6 +3,7 @@ import { Observable, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 import { Account } from "src/app/models/account.interface";
+import { AccountService } from 'src/app/services/account.service';
 
 @Component({
   selector: 'app-accounts',
@@ -14,10 +15,9 @@ export class AccountsComponent implements OnInit, OnDestroy {
 
   public budget: number;
   public accounts: Account[];
-  public accounts$: Observable<Account[]>;
   private destroy$: Subject<boolean> = new Subject<boolean>();
 
-  constructor() { }
+  constructor(private accountService: AccountService) { }
 
   ngOnDestroy(): void {
     this.destroy$.next();
@@ -25,20 +25,11 @@ export class AccountsComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    //this.accounts$ = this.accountService.load();
-    this.accounts$ = new Observable(subscriber => {
-      subscriber.next([{
-        name: 'BTV',
-        balance: 2500,
-        currency: 'EUR'
-      },
-      {
-        name: 'Hypo Tirol Bank',
-        balance: 2500,
-        currency: 'EUR'
-      }]);
-    });
-    this.accounts$.pipe(takeUntil(this.destroy$)).subscribe(accounts => this.accounts = accounts);
+    this.accountService.getAccounts().subscribe(accounts => this.accounts = accounts);
+  }
+
+  public removeAccount(id: string) {
+    this.accountService.removeAccount(id);
   }
 
 }

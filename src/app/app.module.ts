@@ -12,6 +12,8 @@ import { incomesReducer } from './state/incomes/incomes.reducer';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from 'src/environments/environment';
 import { IncomesEffects } from './state/incomes/incomes.effects';
+import { accountsReducer } from './state/accounts/accounts.reducer';
+import { AccountsEffects } from './state/accounts/accounts.effects';
 
 @NgModule({
   declarations: [
@@ -23,8 +25,8 @@ import { IncomesEffects } from './state/incomes/incomes.effects';
     NavigationModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    EffectsModule.forRoot([IncomesEffects]),
-    StoreModule.forRoot({ incomes: incomesReducer }),
+    EffectsModule.forRoot([IncomesEffects, AccountsEffects]),
+    StoreModule.forRoot({ incomes: incomesReducer, accounts: accountsReducer }),
     StoreDevtoolsModule.instrument({
       maxAge: 25, // Retains last 25 states
       logOnly: environment.production, // Restrict extension to log-only mode

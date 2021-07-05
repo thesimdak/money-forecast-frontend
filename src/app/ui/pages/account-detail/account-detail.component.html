@@ -10,13 +10,8 @@
       </span>
       <div class="account-balance">
         <span class="p-float-label">
-          <input
-            id="float-input"
-            type="text"
-            formControlName="balance"
-            pInputText
-          />
-          <label for="float-input">Account balance</label>
+          <p-inputNumber id="amount" formControlName="balance"></p-inputNumber>
+          <label for="amount">Account balance</label>
         </span>
         <span class="p-float-label">
           <p-dropdown
@@ -31,8 +26,8 @@
   </form>
 </div>
 <div class="btn-footer">
-  <button class="btn-secondary mt-1" routerLink="..">Cancel</button>
-  <button class="btn-primary mt-1" (click)="saveAccount()" routerLink="..">
+  <button class="btn-secondary mt-1" routerLink="/accounts">Cancel</button>
+  <button class="btn-primary mt-1" (click)="saveAccount()">
     Save
   </button>
 </div>

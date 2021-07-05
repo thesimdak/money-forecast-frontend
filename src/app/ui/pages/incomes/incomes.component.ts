@@ -1,8 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { select, Store } from '@ngrx/store';
 import { IncomeService } from 'src/app/services/income.service';
-import { AppState } from 'src/app/state/app.state';
-import { selectIncomes } from 'src/app/state/incomes/incomes.selectors';
 
 @Component({
   selector: 'app-incomes',

@@ -5,6 +5,7 @@ import { AccountDetailRoutingModule } from './account-detail-routing.module';
 import { InputTextModule } from 'primeng/inputtext';
 import { DropdownModule } from 'primeng/dropdown';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { InputNumberModule } from 'primeng/inputnumber';
 
 
 @NgModule({
@@ -13,6 +14,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     CommonModule,
     AccountDetailRoutingModule,
     InputTextModule,
+    InputNumberModule,
     DropdownModule,
     FormsModule,
     ReactiveFormsModule
