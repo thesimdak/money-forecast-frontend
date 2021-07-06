@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { OutcomeService } from 'src/app/services/outcome.service';
+
 
 @Component({
   selector: 'app-outcomes',
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OutcomesComponent implements OnInit {
 
-  constructor() { }
+  public outcomes$;
+  constructor(private outcomeService: OutcomeService) { 
+    this.outcomes$ = this.outcomeService.getOutcomes();
+  }
 
   ngOnInit(): void {
+  }
+
+  public removeOutcome(id: string) {
+    this.outcomeService.removeOutcome(id);
   }
 
 }

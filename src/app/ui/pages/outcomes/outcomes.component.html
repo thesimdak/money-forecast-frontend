@@ -1,9 +1,9 @@
 <h1>Outcomes</h1>
 
 <div class="mt-2 outcome-subheader">
-  <button class="btn-primary" routerLink="./account-detail">Add</button>
+  <button class="btn-primary" routerLink="./outcome-detail">Add</button>
 </div>
-<app-amount-panel [title]="'Gehalt'" [amount]="'2430'" [routerLink]="'./outcome-detail'"></app-amount-panel>
-<app-amount-panel [title]="'Gehalt'" [amount]="'2430'" [routerLink]="'./outcome-detail'"></app-amount-panel>
-<app-amount-panel [title]="'Gehalt'" [amount]="'2430'" [routerLink]="'./outcome-detail'"></app-amount-panel>
-<app-amount-panel [title]="'Gehalt'" [amount]="'2430'" [routerLink]="'./outcome-detail'"></app-amount-panel>
+<ng-container *ngFor="let outcome of outcomes$ | async; let i=index">
+  <app-amount-panel [title]="outcome.name" [amount]="outcome.balance" [routerLink]="'./outcome-detail/' + outcome.id" (removeClick)="removeOutcome(outcome.id)">
+  </app-amount-panel>
+</ng-container>

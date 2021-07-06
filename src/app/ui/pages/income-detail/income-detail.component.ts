@@ -48,4 +48,8 @@ export class IncomeDetailComponent implements OnInit {
     this.router.navigate(['../incomes']);
   }
 
+  public cancel(): void {
+    this.router.navigate(['../incomes']);
+  }
+
 }

@@ -1,4 +1,4 @@
 <div class="content-header">
   <h1>Outcome</h1>
 </div>
-<app-income-outcome-form (updateIncomeOutComeEvent)="saveOutcome($event)"></app-income-outcome-form>
+<app-income-outcome-form *ngIf="outcome" [incomeOutcome]="outcome" (cancelEvent)="cancel()"  (updateIncomeOutComeEvent)="saveOutcome($event)"></app-income-outcome-form>

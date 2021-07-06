@@ -34,6 +34,8 @@ export class IncomeOutcomeFormComponent implements OnInit {
 
   @Output()
   public updateIncomeOutComeEvent = new EventEmitter<IncomeOutcome>();
+  @Output()
+  public cancelEvent = new EventEmitter<void>();
 
 
   public timePointFormArray: FormArray = this.fb.array([
@@ -122,6 +124,10 @@ export class IncomeOutcomeFormComponent implements OnInit {
       this.updateIncomeOutComeEvent.emit(this.incomeOutcomeForm.value);
     }
     return false;
+  }
+
+  public cancel(): void {
+    this.cancelEvent.emit();
   }
 
   public addPeriodity(): void {
