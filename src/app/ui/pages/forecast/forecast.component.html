@@ -1,4 +1,8 @@
 <div class="forecast-header">
   <h1>Forecast</h1>
-  <button class="btn-primary">Start</button>
+  <p-dropdown [options]="yearsOptions" optionLabel="name" optionValue="code">
+  </p-dropdown>
+</div>
+<div class="card">
+  <p-chart type="line" [data]="basicData" [options]="basicOptions"></p-chart>
 </div>

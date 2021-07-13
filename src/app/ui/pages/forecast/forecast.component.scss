@@ -9,5 +9,10 @@ h1 {
   width: 100%;
   border-bottom: 3px solid;
   border-color: $oxford-blue;
+}
 
+.year-header {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
 }
