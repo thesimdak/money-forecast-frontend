@@ -16,6 +16,7 @@ import { IncomesEffects } from './state/incomes/incomes.effects';
 import { accountsReducer } from './state/accounts/accounts.reducer';
 import { AccountsEffects } from './state/accounts/accounts.effects';
 import { OutcomesEffects } from './state/outcomes/outcomes.effects';
+import { metaReducers } from "src/app/state/storage.metareducer";
 
 @NgModule({
   declarations: [
@@ -28,7 +29,7 @@ import { OutcomesEffects } from './state/outcomes/outcomes.effects';
     BrowserAnimationsModule,
     HttpClientModule,
     EffectsModule.forRoot([IncomesEffects, OutcomesEffects, AccountsEffects]),
-    StoreModule.forRoot({ incomes: incomesReducer, outcomes: outcomesReducer, accounts: accountsReducer }),
+    StoreModule.forRoot({ incomes: incomesReducer, outcomes: outcomesReducer, accounts: accountsReducer }, { metaReducers }),
     StoreDevtoolsModule.instrument({
       maxAge: 25, // Retains last 25 states
       logOnly: environment.production, // Restrict extension to log-only mode
