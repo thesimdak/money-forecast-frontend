@@ -1,8 +1,8 @@
 <div class="forecast-header">
   <h1>Forecast</h1>
-  <p-dropdown [options]="yearsOptions" optionLabel="name" optionValue="code">
+  <p-dropdown styleClass="h1-dropdown" [options]="yearsOptions" optionLabel="name" optionValue="code">
   </p-dropdown>
 </div>
 <div class="card">
-  <p-chart type="line" [data]="basicData" [options]="basicOptions"></p-chart>
+  <p-chart type="line" height="350" [data]="basicData" [options]="basicOptions"></p-chart>
 </div>

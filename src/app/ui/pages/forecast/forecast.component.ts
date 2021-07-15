@@ -1,3 +1,4 @@
+import { ViewEncapsulation } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 
 interface Year {
@@ -8,7 +9,8 @@ interface Year {
 @Component({
   selector: 'app-forecast',
   templateUrl: './forecast.component.html',
-  styleUrls: ['./forecast.component.scss']
+  styleUrls: ['./forecast.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class ForecastComponent implements OnInit {
 
@@ -31,7 +33,7 @@ export class ForecastComponent implements OnInit {
 
         {
           label: 'Expected budget',
-          data: [2000, 1637, 5320, 6923, 3894, 2455, 4598, 5667, 8394, 11324, 12234, 12403],
+          data: [20000, 16370, 53200, 69230, 38940, 24550, 45908, 56067, 83904, 113024, 120234, 124003],
           fill: false,
           borderColor: '#dbfe87ff'
         }
@@ -55,7 +57,9 @@ export class ForecastComponent implements OnInit {
             fontColor: '#495057'
           }
         }]
-      }
+      },
+      responsive: false,
+      maintainAspectRatio: false
     };
 
   }

@@ -16,3 +16,19 @@ h1 {
   justify-content: space-between;
   width: 100%;
 }
+
+.h1-dropdown .p-dropdown-label {
+  font-family: "Open Sans", sans-serif;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  font-size: 2em;
+  font-weight: bold;
+}
+
+.h1-dropdown {
+  border: 0px!important;
+}
+
+.p-dropdown-label.p-inputtext {
+  padding: 0 0 0 0;
+}
