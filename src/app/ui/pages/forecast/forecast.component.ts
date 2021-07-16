@@ -1,5 +1,7 @@
-import { ViewEncapsulation } from '@angular/core';
+import { ChangeDetectorRef, ViewEncapsulation } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
+import { take } from 'rxjs/operators';
+import { BudgetService } from 'src/app/services/budget.service';
 
 interface Year {
   name: string;
@@ -14,11 +16,13 @@ interface Year {
 })
 export class ForecastComponent implements OnInit {
 
+  public year: string =  new Date().getFullYear() + '';
+  public monthList = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'Oktober', 'November', 'December'];
   public yearsOptions: Year[] = [];
   public basicOptions: any;
   public basicData: any;
 
-  constructor() { }
+  constructor(private budgetService: BudgetService) { }
 
   ngOnInit(): void {
     for (let i = new Date().getFullYear(); i <= new Date().getFullYear() + 50; i++) {
@@ -28,12 +32,12 @@ export class ForecastComponent implements OnInit {
       })
     }
     this.basicData = {
-      labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'Oktober', 'November', 'December'],
+      labels: this.monthList.slice(12 - new Date().getMonth()),
       datasets: [
 
         {
           label: 'Expected budget',
-          data: [20000, 16370, 53200, 69230, 38940, 24550, 45908, 56067, 83904, 113024, 120234, 124003],
+          data: [],
           fill: false,
           borderColor: '#dbfe87ff'
         }
@@ -61,7 +65,24 @@ export class ForecastComponent implements OnInit {
       responsive: false,
       maintainAspectRatio: false
     };
+    this.updateForecast(Number(this.year));
 
+  }
+
+  public onChange($event): void {
+    this.year = $event.value;
+    this.updateForecast(Number(this.year));
+   
+  }
+  updateForecast(year: number) {
+    this.budgetService.getBudget(Number(this.year)).pipe(take(1)).subscribe(
+      budgetData => {
+        let basicData = this.basicData;
+        basicData.datasets[0].data = budgetData;
+        basicData.labels = this.monthList.slice(12 - budgetData.length, 12);
+        this.basicData = {...basicData};
+      }
+    );
   }
 
 }

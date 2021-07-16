@@ -1,6 +1,6 @@
 <div class="forecast-header">
   <h1>Forecast</h1>
-  <p-dropdown styleClass="h1-dropdown" [options]="yearsOptions" optionLabel="name" optionValue="code">
+  <p-dropdown styleClass="h1-dropdown" [options]="yearsOptions" optionLabel="name" optionValue="code" (onChange)="onChange($event)">
   </p-dropdown>
 </div>
 <div class="card">
