@@ -3,7 +3,7 @@
     <!--  Income name, amount and currency  -->
     <div class="amount-row">
       <span class="p-float-label">
-        <input id="amount-name" autocomplete="off" type="text" maxlength="20" formControlName="name" pInputText />
+        <input id="amount-name" autocomplete="off" type="text" maxlength="45" formControlName="name" pInputText />
         <label for="amount-name">Name</label>
       </span>
       <div class="balance">
@@ -54,7 +54,7 @@
   </form>
 </div>
 <div class="btn-footer">
-  <button class="btn-secondary mt-1" routerLink="cancel()">Cancel</button>
+  <button class="btn-secondary mt-1" (click)="cancel()">Cancel</button>
   <button class="btn-primary mt-1" (click)="save()">
     Save
   </button>

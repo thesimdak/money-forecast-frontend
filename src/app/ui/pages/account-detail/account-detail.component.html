@@ -5,7 +5,7 @@
   <form [formGroup]="accountForm" *ngIf="accountForm">
     <div class="budget-form">
       <span class="p-float-label">
-        <input id="float-input" autocomplete="off" type="text" formControlName="name" pInputText />
+        <input id="float-input" autocomplete="off" maxlength="45"  type="text" formControlName="name" pInputText />
         <label for="float-input">Account name</label>
       </span>
       <div class="account-balance">
