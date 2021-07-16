@@ -3,7 +3,7 @@ import { createReducer, on, Action } from '@ngrx/store';
 import { IncomeOutcome } from '../../models/income-outcome.interface';
 import { AppState } from '../app.state';
 
-import { addIncome, addIncomeSuccess, removeIncomeSuccess, retrievedIncomeList } from './incomes.actions';
+import { addIncome, addIncomeSuccess, editIncomeSuccess, removeIncomeSuccess, retrievedIncomeList } from './incomes.actions';
 
 export const initialState: ReadonlyArray<IncomeOutcome> = [];
 
@@ -16,6 +16,15 @@ const _incomesReducer = createReducer(
     }).indexOf(id);
 
     let items = [...state.slice(0, index)];
+    return [...items, ...state.slice(index + 1, state.length)]
+  }),
+  on(editIncomeSuccess, (state: ReadonlyArray<IncomeOutcome>, { income }) => {
+    var index = state.map(income => {
+      return income.id;
+    }).indexOf(income.id);
+
+    let items = [...state.slice(0, index)];
+    items = [...items, income];
     return [...items, ...state.slice(index + 1, state.length)]
   })
 );

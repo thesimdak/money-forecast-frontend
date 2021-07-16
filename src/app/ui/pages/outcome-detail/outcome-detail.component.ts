@@ -24,7 +24,7 @@ export class OutcomeDetailComponent implements OnInit {
         });
       } else {
         this.outcome = {
-          id: uuidv4(),
+          id: '0',
           name: '',
           balance: 0,
           currency: 'EUR',
@@ -44,7 +44,12 @@ export class OutcomeDetailComponent implements OnInit {
   }
 
   public saveOutcome(outcome: IncomeOutcome) {
-    this.outcomeService.addOutcome(outcome);
+    if (outcome.id === '0') {
+      outcome.id = uuidv4();
+      this.outcomeService.addOutcome(outcome);
+    } else {
+      this.outcomeService.editOutcome(outcome);
+    }
     this.router.navigate(['../outcomes']);
   }
 

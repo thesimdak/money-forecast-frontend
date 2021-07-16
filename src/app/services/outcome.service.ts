@@ -6,7 +6,7 @@ import { of } from "rxjs";
 import { Observable } from "rxjs";
 import { IncomeOutcome } from "../models/income-outcome.interface";
 import { AppState } from "../state/app.state";
-import { addOutcome, removeOutcome} from "../state/outcomes/outcomes.actions";
+import { addOutcome, editOutcome, removeOutcome} from "../state/outcomes/outcomes.actions";
 import { selectOutcomes } from "../state/outcomes/outcomes.selectors";
 
 @Injectable({
@@ -35,6 +35,14 @@ export class OutcomeService {
         this.store.dispatch(removeOutcome({ id }));
     }
 
+    public editOutcome(outcome: IncomeOutcome): void {
+        this.store.dispatch(editOutcome({ outcome }));
+    }
+
+    public updateOutcome(outcome: IncomeOutcome): Observable<IncomeOutcome> {
+        console.log('Updating outcome', outcome);
+        return of(outcome);
+    }
    
     public getOutcomes(): Observable<IncomeOutcome[]> {
         return this.store.pipe(select(selectOutcomes));

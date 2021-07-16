@@ -43,7 +43,7 @@ export class AccountDetailComponent implements OnInit {
         });
       } else {
         this.account  = {
-          id: uuidv4(),
+          id: '0',
           name: '',
           balance: 0,
           currency: 'EUR'
@@ -51,7 +51,7 @@ export class AccountDetailComponent implements OnInit {
       }
     });
     this.accountForm = this.fb.group({
-      id: uuidv4(),
+      id: '0',
       name: this.fb.control('', Validators.required),
       balance: this.fb.control(0, Validators.required),
       currency: this.fb.control(this.account.currency),
@@ -62,7 +62,14 @@ export class AccountDetailComponent implements OnInit {
   public saveAccount(): void {
     this.markDirty();
     if (this.accountForm.valid) {
-      this.accountService.addAccount(this.accountForm.value);
+      let account = this.accountForm.value;
+      if (account.id === '0') {
+        account.id = uuidv4();
+        this.accountService.addAccount(this.accountForm.value);
+      } else {
+        this.accountService.editAccount(this.accountForm.value);
+      }
+    
       this.router.navigate(['../accounts']);
     }
   }

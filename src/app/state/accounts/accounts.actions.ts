@@ -11,6 +11,16 @@ export const addAccountSuccess = createAction(
   props<{ account: Account }>()
 );
 
+export const editAccount = createAction(
+  '[Accounts] Edit Account',
+  props<{ account: Account }>()
+);
+
+export const editAccountSuccess = createAction(
+  '[Accounts] Edit Account Success',
+  props<{ account: Account }>()
+);
+
 export const removeAccount = createAction(
   '[Accounts] Remove Account',
   props<{ id: string }>()

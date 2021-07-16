@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { map, exhaustMap } from 'rxjs/operators';
 import { AccountService } from 'src/app/services/account.service';
-import { addAccount, addAccountSuccess, removeAccount, removeAccountSuccess } from './accounts.actions';
+import { addAccount, addAccountSuccess, editAccount, editAccountSuccess, removeAccount, removeAccountSuccess } from './accounts.actions';
 
 @Injectable()
 export class AccountsEffects {
@@ -23,6 +23,16 @@ export class AccountsEffects {
       exhaustMap(action =>
         this.accountService.deleteAccount(action.id).pipe(
           map(id => removeAccountSuccess({ id }))
+        )
+      )
+    ));
+
+  updateAccount$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(editAccount),
+      exhaustMap(action =>
+        this.accountService.updateAccount(action.account).pipe(
+          map(account => editAccountSuccess({ account }))
         )
       )
     ));

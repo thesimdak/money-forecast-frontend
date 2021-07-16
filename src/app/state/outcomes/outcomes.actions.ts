@@ -11,6 +11,17 @@ export const addOutcomeSuccess = createAction(
   props<{ outcome: IncomeOutcome }>()
 );
 
+export const editOutcome = createAction(
+  '[Outcomes] Edit Outcome',
+  props<{ outcome: IncomeOutcome }>()
+);
+
+export const editOutcomeSuccess = createAction(
+  '[Outcomes] Edit Outcome Success',
+  props<{ outcome: IncomeOutcome }>()
+);
+
+
 export const removeOutcome = createAction(
   '[Outcomes] Remove Outcome',
   props<{ id: string }>()

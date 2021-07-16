@@ -1,7 +1,7 @@
 import { createReducer, on } from '@ngrx/store';
 import { Account } from 'src/app/models/account.interface';
 
-import { addAccountSuccess, removeAccountSuccess } from './accounts.actions';
+import { addAccountSuccess, editAccountSuccess, removeAccountSuccess } from './accounts.actions';
 
 export const initialState: ReadonlyArray<Account> = [];
 
@@ -14,6 +14,15 @@ const _accountsReducer = createReducer(
     }).indexOf(id);
 
     let items = [...state.slice(0, index)];
+    return [...items, ...state.slice(index + 1, state.length)]
+  }),
+  on(editAccountSuccess, (state: ReadonlyArray<Account>, { account }) => {
+    var index = state.map(income => {
+      return account.id;
+    }).indexOf(account.id);
+
+    let items = [...state.slice(0, index)];
+    items = [...items, account];
     return [...items, ...state.slice(index + 1, state.length)]
   })
 );
