@@ -33,4 +33,8 @@ export class AmountPanelComponent implements OnInit {
     this.removeClick.emit();
   }
 
+  public getAmountWithCurrency(amount: number): string {
+    return new Intl.NumberFormat('at-DE', { style: 'currency', currency: 'EUR' }).format(amount);
+  }
+
 }

@@ -33,7 +33,12 @@ export class BudgetService {
             const monthInYear = yearIndex === new Date().getFullYear() ? 12 - new Date().getMonth() : 12
             for (let i = 0; i < monthInYear; i++) {
                 const monthIndex = 12 - monthInYear + i + 1;
-                const currentMonthSaldo: number = this.computeBalanceOfCurrentMonth(yearIndex, monthIndex, incomes, outcomes);
+                let currentMonthSaldo: number = 0;
+                if (year === new Date().getFullYear() && i === 0) {
+                    currentMonthSaldo = this.computeBalanceOfCurrentMonth(yearIndex, monthIndex, incomes, outcomes);
+                } else {
+                    currentMonthSaldo = this.computeBalanceOfCurrentMonth(yearIndex, monthIndex, incomes, outcomes);
+                }
                 yearResult[i] = startBalance;
                 startBalance = startBalance + currentMonthSaldo;
             }
@@ -42,16 +47,23 @@ export class BudgetService {
         return result;
     }
     computeBalanceOfCurrentMonth(year: number, monthIndex: number, incomes: IncomeOutcome[], outcomes: IncomeOutcome[]): number {
-        const sumOfIncomes: number = this.computeIncomeOutcomeSubForMonth(year, monthIndex, incomes);
-        const sumOfOutcomes: number = this.computeIncomeOutcomeSubForMonth(year, monthIndex, outcomes);
+        const sumOfIncomes: number = this.computeIncomeOutcomeSumForMonth(year, monthIndex, incomes);
+        const sumOfOutcomes: number = this.computeIncomeOutcomeSumForMonth(year, monthIndex, outcomes);
         return sumOfIncomes - sumOfOutcomes;
     }
-    computeIncomeOutcomeSubForMonth(year: number, monthIndex: number, incomesOutcomes: IncomeOutcome[]): number {
+
+    computeIncomeOutcomeSumForMonth(year: number, monthIndex: number, incomesOutcomes: IncomeOutcome[]): number {
         let sum = 0;
         for (const incomeOutcome of incomesOutcomes) {
             for (const timePoint of incomeOutcome.regularity.timePoints) {
                 if ((timePoint.year == year || timePoint.year == 0) && (timePoint.month == monthIndex || timePoint.month == 0)) {
-                    sum = sum + incomeOutcome.balance*timePoint.days.length;
+                    // if the selected year and computed month is current, then compute the budget from today, not from the beginnig of the month
+                    const startDay = year === new Date().getFullYear() && monthIndex === (new Date().getMonth() + 1) ? new Date().getDate() : 1;
+                    for (const day of timePoint.days) { 
+                        if (day >= startDay) {
+                            sum = sum + incomeOutcome.balance
+                        }
+                    }    
                 }
             }
         }

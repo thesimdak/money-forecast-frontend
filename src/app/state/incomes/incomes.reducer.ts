@@ -19,8 +19,8 @@ const _incomesReducer = createReducer(
     return [...items, ...state.slice(index + 1, state.length)]
   }),
   on(editIncomeSuccess, (state: ReadonlyArray<IncomeOutcome>, { income }) => {
-    var index = state.map(income => {
-      return income.id;
+    var index = state.map(i => {
+      return i.id;
     }).indexOf(income.id);
 
     let items = [...state.slice(0, index)];
