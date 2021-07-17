@@ -17,6 +17,7 @@ import { accountsReducer } from './state/accounts/accounts.reducer';
 import { AccountsEffects } from './state/accounts/accounts.effects';
 import { OutcomesEffects } from './state/outcomes/outcomes.effects';
 import { metaReducers } from "src/app/state/storage.metareducer";
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,12 @@ import { metaReducers } from "src/app/state/storage.metareducer";
       maxAge: 25, // Retains last 25 states
       logOnly: environment.production, // Restrict extension to log-only mode
       autoPause: true, // Pauses recording actions and state changes when the extension window is not open
+    }),
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: environment.production,
+      // Register the ServiceWorker as soon as the app is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000'
     }),
   ],
   providers: [],
