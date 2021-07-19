@@ -81,8 +81,8 @@
 }
 
 :host ::ng-deep .p-multiselect {
-  min-width: 7rem;
-  max-width: 7rem;
+  min-width: 6rem;
+  max-width: 6rem;
 }
 
 
@@ -93,15 +93,15 @@
 }
 :host ::ng-deep .p-dropdown-year  {
   .p-dropdown {
-    min-width: 4rem;
-    max-width: 4rem;
+    min-width: 5.5rem;
+    max-width: 5.5rem;
   }
 }
 
 :host ::ng-deep .p-dropdown-month {
   .p-dropdown { 
-    min-width: 6rem;
-    max-width: 6rem;
+    min-width: 7rem;
+    max-width: 7rem;
   }
 }
 
@@ -110,4 +110,12 @@
   overflow: visible !important;
 
 }
+
+.btn-remove {
+  width: 2.2em;
+  display: flex;
+  justify-content: center;
+  align-items: center
+}
+
 

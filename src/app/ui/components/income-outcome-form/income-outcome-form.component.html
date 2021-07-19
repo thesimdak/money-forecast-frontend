@@ -38,12 +38,16 @@
               </span>
               <span class="p-float-label">
                 <p-multiSelect [defaultLabel]="'Days'" [options]="daysOptions[i]" formControlName="days" optionLabel="name"
-                  selectedItemsLabel="{0} items" optionValue="code">
+                  optionValue="code">
                 </p-multiSelect>
               </span>
-              <span class="p-float-label">
-                <button *ngIf="incomeOutcomeForm.controls.regularity.controls.timePoints.controls.length > 1" class="btn-secondary" (click)="removePeriodity(i)">Remove</button>
-                <button *ngIf="incomeOutcomeForm.controls.regularity.controls.timePoints.controls.length == 1" class="btn-secondary-disabled">Remove</button>
+              <span class="p-float-label remove">
+                <button *ngIf="incomeOutcomeForm.controls.regularity.controls.timePoints.controls.length > 1" class="btn-secondary btn-remove" (click)="removePeriodity(i)">
+                  <i class="gg-trash"></i>
+                </button>
+                <button *ngIf="incomeOutcomeForm.controls.regularity.controls.timePoints.controls.length == 1" class="btn-secondary-disabled btn-remove">
+                  <i class="gg-trash"></i>
+                </button>
               </span>
             </div>
           </div>

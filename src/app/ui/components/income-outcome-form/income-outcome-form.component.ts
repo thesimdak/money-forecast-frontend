@@ -1,4 +1,4 @@
-import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild, ViewEncapsulation } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { last } from 'rxjs/operators';
 import { Currency } from 'src/app/models/currency.interface';
@@ -22,7 +22,7 @@ interface Year {
 @Component({
   selector: 'app-income-outcome-form',
   templateUrl: './income-outcome-form.component.html',
-  styleUrls: ['./income-outcome-form.component.scss']
+  styleUrls: ['./income-outcome-form.component.scss'],
 })
 export class IncomeOutcomeFormComponent implements OnInit {
 
