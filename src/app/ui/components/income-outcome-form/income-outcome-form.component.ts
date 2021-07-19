@@ -1,6 +1,5 @@
-import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild, ViewEncapsulation } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { last } from 'rxjs/operators';
 import { Currency } from 'src/app/models/currency.interface';
 import { IncomeOutcome } from 'src/app/models/income-outcome.interface';
 interface Day {
