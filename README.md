@@ -1,6 +1,6 @@
 # MoneyForecast
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.0.2.
+Simple PWA App for prediction of money savings. Works offline, no registration or sign up is needed. Can be used and installed from this URL: https://thesimdak.github.io/money-forecast-frontend/
 
 ## Development server
 
